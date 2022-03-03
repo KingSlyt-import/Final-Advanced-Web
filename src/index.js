@@ -4,7 +4,6 @@ const path = require('path');
 // npm modules
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
-const req = require('express/lib/request');
 
 const app = express();
 const port = process.env.PORT || 3000;
