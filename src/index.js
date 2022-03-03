@@ -2,6 +2,7 @@
 const path = require('path');
 
 // npm modules
+require('dotenv').config()
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
 
