@@ -1,0 +1,25 @@
+{
+    "name": "final",
+    "version": "1.0.0",
+    "description": "Modules web cuối kỳ",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KingSlyt-import/Final-Advanced-Web.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/KingSlyt-import/Final-Advanced-Web/issues"
+    },
+    "homepage": "https://github.com/KingSlyt-import/Final-Advanced-Web#readme",
+    "dependencies": {
+        "express": "^4.17.3",
+        "express-handlebars": "^6.0.2",
+        "nodemon": "^2.0.15"
+    }
+}
