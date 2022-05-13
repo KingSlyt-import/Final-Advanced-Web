@@ -7,47 +7,34 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-// Directory define
-const viewsDirectoryPath = path.join(__dirname, '../views');
-const publicDirectoryPath = path.join(__dirname, '../public');
-
-// View Engine Setup
-app.engine('hbs', expressHandlebars.engine({
-    defaultLayout: 'main',
-    partialsDir: viewsDirectoryPath + '/partials',
-    extname: 'hbs'
-}));
-
-app.set('view engine', 'hbs');
-
-// Express Config
+// express config body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// express config routers
+const AccountRouter = require('./routers/AccountRouter');
+app.use('/api/accounts', AccountRouter);
+
+// Database 
+const database = require('./repository/mongo/config/index');
+
+// Directory define
+const viewsDirectoryPath = path.join(__dirname, './views');
+const publicDirectoryPath = path.join(__dirname, './public');
+
+// View Engine Setup
+app.set('views', viewsDirectoryPath);
+app.engine('hbs', expressHandlebars.engine({
+    defaultLayout: 'main',
+    layoutsDir: viewsDirectoryPath + '/layouts',
+    partialsDir: viewsDirectoryPath + '/partials',
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs');
+
 app.use(express.static(publicDirectoryPath));
 
-// Routing
-app.get('/', (req, res) => {
-    res.render('test', {
-        title: 'Homepage'
-    });
-})
-
-// Error Handle Page
-app.get('*', (req, res) => {
-    res.render('404', {
-        title: '404 - Page not found'
-    });
-});
-
-// custom 500 page
-app.use((err, req, res, next) => {
-    console.error(err.message);
-    res.status(500);
-});
-
-app.listen(port, () => {
-    console.log(`Express started on http:/localhost:${port}; ` + 'press Ctrl-C to terminate. ');
-});
+const port = process.env.PORT || 3000;
+database.connect()
+    .then(() => app.listen(port, () => console.log(`Express started on http:/localhost:${port}; ` + 'press Ctrl-C to terminate. ')))
+    .catch(e => console.log('Cannot connect to MongoDB Server: ' + e.message));
