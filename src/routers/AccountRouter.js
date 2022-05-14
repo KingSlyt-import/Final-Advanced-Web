@@ -12,5 +12,5 @@ const router = express.Router();
 router.get('/', isLoggedIn, AccountControllers.getAccountController);
 router.get('/get-all-user', isLoggedIn, AccountControllers.getAllUser);
 router.post('/register', registerValidator, AccountControllers.register);
-
+router.get('/profile/:email',AccountControllers.getProfile);
 module.exports = router;

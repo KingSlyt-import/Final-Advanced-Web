@@ -36,5 +36,5 @@ app.use(express.static(publicDirectoryPath));
 
 const port = process.env.PORT || 3000;
 database.connect()
-    .then(() => app.listen(port, () => console.log(`Express started on http:/localhost:${port}; ` + 'press Ctrl-C to terminate. ')))
+    .then(() => app.listen(port, () => console.log(`Express started on http://localhost:${port}; ` + 'press Ctrl-C to terminate. ')))
     .catch(e => console.log('Cannot connect to MongoDB Server: ' + e.message));

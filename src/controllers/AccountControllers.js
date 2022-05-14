@@ -112,7 +112,37 @@ class AccountControllers {
                     message: 'Đăng ký tài khoản thất bại: ' + e.message
                 })
             });
-    }
-};
+    };
+
+    // [GET] /api/accounts/profile/:email
+    async getProfile(req, res) {
+        const { email } = req.params;
+        const userData = await AccountModel.findOne({ email });
+        if (!userData) {
+            return res.json({
+                code: 3,
+                message: 'Không tìm thấy tài khoản'
+            });
+        }
+
+        const data = {
+            fullName: userData.fullName,
+            email: userData.email,
+            phone: userData.phone,
+            birthDate: userData.birthDate,
+            address: userData.address,
+            role: userData.role,
+            status: userData.status,
+            money: userData.money,
+            tradeCount: userData.tradeCount,
+        }
+
+        return res.json({
+            code: 0,
+            message: 'Nhận thông tin người dùng thành công',
+            data
+        });
+    };
+}
 
 module.exports = new AccountControllers();
