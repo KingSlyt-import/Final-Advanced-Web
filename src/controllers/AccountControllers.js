@@ -82,26 +82,29 @@ class AccountControllers {
 
         user.save()
             .then(() => {
+                const emailData = {
+                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản đăng nhập của hệ thống SPACE HOLIC',
+                    toEmail: email,
+                    username: name,
+                    password
+                }
+
+                emailer.sendEmail(emailData)
+                    .then(() => {
+                        console.log('Gửi email xác nhận thành công');
+                    })
+                    .catch(e => {
+                        if (!emailerResult) {
+                            throw new Error('Gửi mail xác nhận thất bại');
+                        }
+                    })
+            })
+            .then(() => {
                 return res.json({
                     code: 0,
                     message: 'Đăng ký tài khoản thành công',
                     data: user
                 })
-            })
-            .then(() => {
-                const emailData = {
-                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản đăng nhập của hệ thống SPACE HOLIC',
-                    toEmail: email,
-                    username,
-                    password
-                }
-
-                const emailerResult = emailer.sendEmail(emailData);
-                if (emailerResult) {
-                    console.log(emailerResult);
-                } else {
-                    console.log('Lỗi khi gửi email xác nhận');
-                }
             })
             .catch(e => {
                 return res.json({
