@@ -1,5 +1,5 @@
 // core module
-const { UserModel, AccountModel } = require('../repository/mongo/models/User');
+const { AccountModel } = require('../repository/mongo/models/User');
 const emailer = require('../utils/email/index');
 
 // npm module
@@ -65,7 +65,7 @@ class AccountControllers {
         user.save()
             .then(() => {
                 const emailData = {
-                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản đăng nhập của hệ thống SPACE HOLIC',
+                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản của hệ thống SPACE HOLIC',
                     toEmail: email,
                     username: userName,
                     password
@@ -100,8 +100,8 @@ class AccountControllers {
             })
         };
 
-        const { userName, password } = req.body;
-        const user = await AccountModel.findOne({ userName });
+        const { username, password } = req.body;
+        const user = await AccountModel.findOne({ username });
 
         // Username không tồn tại
         if (!user) {

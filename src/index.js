@@ -12,7 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // express config routers
 const AccountRouter = require('./routers/AccountRouter');
+const AdminRouter = require('./routers/AdminRouter');
+
 app.use('/api/accounts', AccountRouter);
+app.use('/api/admin', AdminRouter);
 
 // Database 
 const database = require('./repository/mongo/config/index');
