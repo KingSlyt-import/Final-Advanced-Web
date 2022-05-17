@@ -9,8 +9,13 @@ const express = require('express');
 const router = express.Router();
 
 // routing
-router.get('/', isLoggedIn, AccountControllers.getAccountController);
+router.get('/', AccountControllers.getAccountController);
 router.get('/get-all-user', isLoggedIn, AccountControllers.getAllUser);
+router.get('/get-user-by-id', isLoggedIn, AccountControllers.getUserById);
+
 router.post('/register', registerValidator, AccountControllers.register);
-router.get('/profile/:email',AccountControllers.getProfile);
+router.post('/login', loginValidator, AccountControllers.login);
+
+router.get('/profile/:email', AccountControllers.getProfile);
+
 module.exports = router;

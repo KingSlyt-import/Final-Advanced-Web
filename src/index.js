@@ -4,7 +4,6 @@ const path = require('path');
 // npm modules
 require('dotenv').config()
 const express = require('express');
-const expressHandlebars = require('express-handlebars');
 
 const app = express();
 // express config body-parser
@@ -23,16 +22,15 @@ const viewsDirectoryPath = path.join(__dirname, './views');
 const publicDirectoryPath = path.join(__dirname, './public');
 
 // View Engine Setup
+app.set('view engine', 'ejs');
 app.set('views', viewsDirectoryPath);
-app.engine('hbs', expressHandlebars.engine({
-    defaultLayout: 'main',
-    layoutsDir: viewsDirectoryPath + '/layouts',
-    partialsDir: viewsDirectoryPath + '/partials',
-    extname: 'hbs'
-}));
-app.set('view engine', 'hbs');
 
 app.use(express.static(publicDirectoryPath));
+
+// Routing
+app.get('/', (req, res) => {
+    res.render('login');
+})
 
 const port = process.env.PORT || 3000;
 database.connect()
