@@ -4,7 +4,7 @@ require('dotenv').config();
 const connect = async() => {
     try {
         const mongoURL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}.vr0mo.mongodb.net/${process.env.MONGO_COLLECTION}`;
-        console.log(mongoURL);
+        // console.log(mongoURL);
         await mongoose.connect(mongoURL);
         console.log('Connect to database successfully!');
     } catch (error) {

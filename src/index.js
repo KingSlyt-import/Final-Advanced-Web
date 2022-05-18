@@ -32,7 +32,8 @@ app.use(express.static(publicDirectoryPath));
 
 // Routing
 app.get('/', (req, res) => {
-    res.render('login');
+    // res.render('index', { port });
+    res.render('index');
 })
 
 const port = process.env.PORT || 3000;

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const AccountSchema = new mongoose.Schema({
-    phone: { type: String, required: true, maxLength: 10 },
-    email: { type: String, required: true },
+    phone: { type: String, unique: true, required: true, maxLength: 10 },
+    email: { type: String, unique: true, required: true },
     fullName: { type: String, required: true },
     birthDate: { type: Date, required: true },
     address: { type: String, required: true },
@@ -10,11 +10,12 @@ const AccountSchema = new mongoose.Schema({
     idCardBack: { type: String, required: true },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     firstLog: { type: Boolean, required: true, default: true },
-    status: { type: String, enum: ['waiting', 'verified', 'disabled', 'addInfo'], default: 'waiting' },
+    status: { type: String, enum: ['waiting', 'verified', 'softDisabled', 'disabled', 'addInfo'], default: 'waiting' },
     /*
         status: {
             waiting    : Chờ xác minh,
             verified   : Đã xác minh,
+            softDisabled: Bị khóa,
             disabled   : Vô hiệu hóa,
             addInfo   : Bổ sung thông tin
         }

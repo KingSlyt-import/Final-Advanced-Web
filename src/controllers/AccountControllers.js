@@ -1,5 +1,5 @@
 // core module
-const { AccountModel } = require('../repository/mongo/models/User');
+const { AccountModel } = require('../repository/mongo/models/Account');
 const emailer = require('../utils/email/index');
 
 // npm module
@@ -87,35 +87,6 @@ class AccountControllers {
                 })
             });
     };
-    // [GET] /api/accounts/login
-    async login(req, res) {
-        const result = validationResult(req);
-        if (result.errors.length !== 0) {
-            let message = result.errors[0].msg;
-
-            return res.json({
-                code: 0,
-                message
-            })
-        }
-
-        const { email, password } = req.body;
-        const userData = await AccountModel.findOne({ email });
-        if (!userData) {
-            return res.json({
-                code: 3,
-                message: 'Tài khoản không tồn tại'
-            });
-        }
-
-        const isMatch = bcrypt.compareSync(password, userData.password);
-        if (!isMatch) {
-            return res.json({
-                code: 3,
-                message: 'Mật khẩu không đúng'
-            });
-        }
-    }
 
     // [POST] /api/accounts/login
     async login(req, res) {
@@ -173,10 +144,12 @@ class AccountControllers {
             }
 
             // Nếu số lần đăng nhập bất thường nhỏ hơn 3, cộng số lần đăng nhập bất thường lên 1
-            if (user.loginAttempt.count < 3) {
+            if (user.loginAttempt.count <= 2) {
                 dataUpdate = {
-                    ...user.loginAttempt,
-                    count: user.loginAttempt.count + 1
+                    loginAttempt: {
+                        ...user.loginAttempt,
+                        count: user.loginAttempt.count + 1
+                    }
                 }
             } else {
                 // Nếu người dùng đã bị đánh dấu đăng nhập bất thường, tài khoản sẽ chuyển sang trạng thái disabled
@@ -204,6 +177,11 @@ class AccountControllers {
                             message: 'Không tìm thấy người dùng'
                         });
                     };
+
+                    return res.json({
+                        code: 3,
+                        message: 'Mật khẩu hoặc tài khoản không chính xác'
+                    });
                 }).catch(e => {
                     return res.json({
                         code: 3,
@@ -259,10 +237,10 @@ class AccountControllers {
         });
     };
 
-    // [GET] /api/accounts/get-all-user
-    async getUserById(req, res) {
-        const { id } = req.params;
-        const data = await AccountModel.find({ _id: id });
+    // [GET] /api/accounts/get-all-user-by-email
+    async getUserByEmail(req, res) {
+        const { email } = req.user;
+        const data = await AccountModel.find({ email });
 
         if (!data) {
             return res.json({
@@ -278,9 +256,9 @@ class AccountControllers {
         });
     };
 
-    // [GET] /api/accounts/profile/:email
+    // [GET] /api/accounts/profile
     async getProfile(req, res) {
-        const { email } = req.params;
+        const { email } = req.user;
         const userData = await AccountModel.findOne({ email });
         if (!userData) {
             return res.json({
@@ -308,7 +286,7 @@ class AccountControllers {
         });
     };
 
-    // [POST] /api/accounts/change-password/:email
+    // [POST] /api/accounts/change-password
     async changePassword(req, res) {
         const result = validationResult(req);
         if (result.errors.length !== 0) {
@@ -321,7 +299,7 @@ class AccountControllers {
         }
 
         const { oldPassword, newPassword } = req.body
-        const {email} = req.params;
+        const { email } = req.user;
         const userData = await AccountModel.findOne({ email });
         if (!userData) {
             return res.json({
