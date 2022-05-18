@@ -17,5 +17,6 @@ router.post('/register', registerValidator, AccountControllers.register);
 router.post('/login', loginValidator, AccountControllers.login);
 
 router.get('/profile/:email', AccountControllers.getProfile);
+router.post('/change-password/:email', isLoggedIn, AccountControllers.changePassword);
 
 module.exports = router;

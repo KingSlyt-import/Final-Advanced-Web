@@ -87,6 +87,35 @@ class AccountControllers {
                 })
             });
     };
+    // [GET] /api/accounts/login
+    async login(req, res) {
+        const result = validationResult(req);
+        if (result.errors.length !== 0) {
+            let message = result.errors[0].msg;
+
+            return res.json({
+                code: 0,
+                message
+            })
+        }
+
+        const { email, password } = req.body;
+        const userData = await AccountModel.findOne({ email });
+        if (!userData) {
+            return res.json({
+                code: 3,
+                message: 'Tài khoản không tồn tại'
+            });
+        }
+
+        const isMatch = bcrypt.compareSync(password, userData.password);
+        if (!isMatch) {
+            return res.json({
+                code: 3,
+                message: 'Mật khẩu không đúng'
+            });
+        }
+    }
 
     // [POST] /api/accounts/login
     async login(req, res) {
@@ -276,6 +305,46 @@ class AccountControllers {
             code: 0,
             message: 'Nhận thông tin người dùng thành công',
             data
+        });
+    };
+
+    // [POST] /api/accounts/change-password/:email
+    async changePassword(req, res) {
+        const result = validationResult(req);
+        if (result.errors.length !== 0) {
+            let message = result.errors[0].msg;
+
+            return res.json({
+                code: 0,
+                message
+            })
+        }
+
+        const { oldPassword, newPassword } = req.body
+        const {email} = req.params;
+        const userData = await AccountModel.findOne({ email });
+        if (!userData) {
+            return res.json({
+                code: 3,
+                message: 'Không tìm thấy tài khoản'
+            });
+        }
+
+        const isMatch = bcrypt.compareSync(oldPassword, userData.password);
+        if (!isMatch) {
+            return res.json({
+                code: 3,
+                message: 'Mật khẩu cũ không đúng'
+            });
+        }
+
+        const hashedPassword = bcrypt.hashSync(newPassword, 10);
+
+        await AccountModel.findOneAndUpdate({ email }, { password: hashedPassword });
+
+        return res.json({
+            code: 0,
+            message: 'Đổi mật khẩu thành công'
         });
     };
 }
