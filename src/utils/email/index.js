@@ -7,11 +7,13 @@ const readFile = promisify(fs.readFile);
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-const { EMAIL_USER, EMAIL_PASSWORD } = process.env;
+const { EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASSWORD } = process.env;
 // console.log(EMAIL_USER, EMAIL_PASSWORD);
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
+    // host: EMAIL_HOST,
+    // port: EMAIL_PORT,
     auth: {
         user: EMAIL_USER,
         pass: EMAIL_PASSWORD

@@ -6,7 +6,6 @@ const emailer = require('../utils/email/index');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const res = require('express/lib/response');
 
 class AccountControllers {
     // [GET] /api/accounts/
@@ -65,7 +64,7 @@ class AccountControllers {
         user.save()
             .then(() => {
                 const emailData = {
-                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản của hệ thống SPACE HOLIC',
+                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản hệ thống SPACE HOLIC',
                     toEmail: email,
                     username: userName,
                     password
@@ -107,7 +106,7 @@ class AccountControllers {
         if (!user) {
             return res.json({
                 code: 3,
-                message: 'Tài khoản không tồn tài'
+                message: 'Tài khoản không tồn tại'
             });
         };
 
@@ -195,6 +194,7 @@ class AccountControllers {
             email: user.email,
             fullName: user.fullName,
             firstLog: user.firstLog,
+            role: user.role,
             status: user.status
         }, JWT_SECRET, {
             expiresIn: '1h'
