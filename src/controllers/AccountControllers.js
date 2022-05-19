@@ -1,10 +1,12 @@
 // core module
 const { AccountModel } = require('../repository/mongo/models/Account');
+const saveIdCard = require('../utils/util/saveIdCard');
 const emailer = require('../utils/email/index');
 
 // npm module
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const formidable = require('formidable');
 const { validationResult } = require('express-validator');
 
 class AccountControllers {
@@ -18,73 +20,86 @@ class AccountControllers {
 
     // [POST] /api/accounts/register
     async register(req, res) {
-        const result = validationResult(req);
-        if (result.errors.length !== 0) {
-            let message = result.errors[0].msg;
-
-            return res.json({
-                code: 0,
-                message
-            })
-        }
-
-        const { name, email, phone, birthDate, address, idCardFront, idCardBack } = req.body;
-
-        const checkEmailExists = await AccountModel.findOne({ email });
-        if (checkEmailExists) {
-            return res.json({
-                code: 3,
-                message: 'Email đã tồn tại'
-            });
-        };
-        const checkPhoneExists = await AccountModel.findOne({ phone });
-        if (checkPhoneExists) {
-            return res.json({
-                code: 3,
-                message: 'Số điện thoại đã tồn tại'
-            });
-        };
-
-        const userName = (Math.floor(1000000000 + Math.random() * 9999999999)).toString();
-        const password = (Math.random().toString(36).substring(2, 8)).toString();
-        const hashedPassword = bcrypt.hashSync(password, 10);
-
-        const user = new AccountModel({
-            username: userName,
-            password: hashedPassword,
-            fullName: name,
-            phone,
-            email,
-            birthDate,
-            address,
-            idCardFront,
-            idCardBack
-        });
-
-        user.save()
-            .then(() => {
-                const emailData = {
-                    subject: '[SPACE HOLIC] Mật khẩu và tài khoản hệ thống SPACE HOLIC',
-                    toEmail: email,
-                    username: userName,
-                    password
-                }
-
-                emailer.sendEmail(emailData);
-            })
-            .then(() => {
+        const form = new formidable.IncomingForm();
+        form.parse(req, async(err, fields, files) => {
+            if (err) {
                 return res.json({
-                    code: 0,
-                    message: 'Đăng ký tài khoản thành công',
-                    data: user
-                });
-            })
-            .catch(e => {
-                return res.json({
-                    code: 0,
-                    message: 'Đăng ký tài khoản thất bại: ' + e.message
+                    code: 2,
+                    message: err
                 })
+            }
+
+            const result = validationResult(fields);
+            if (result.errors.length !== 0) {
+                let message = result.errors[0].msg;
+
+                return res.json({
+                    code: 2,
+                    message
+                })
+            }
+
+            const { name, email, phone, birthDate, address } = fields;
+
+            const checkEmailExists = await AccountModel.findOne({ email });
+            if (checkEmailExists) {
+                return res.json({
+                    code: 3,
+                    message: 'Email đã tồn tại'
+                });
+            };
+            const checkPhoneExists = await AccountModel.findOne({ phone });
+            if (checkPhoneExists) {
+                return res.json({
+                    code: 3,
+                    message: 'Số điện thoại đã tồn tại'
+                });
+            };
+
+            const userName = (Math.floor(1000000000 + Math.random() * 9999999999)).toString();
+            const password = (Math.random().toString(36).substring(2, 8)).toString();
+            const hashedPassword = bcrypt.hashSync(password, 10);
+
+            const { idCardFront, idCardBack } = files;
+            const [idCardFrontPath, idCardBackPath] = saveIdCard(userName, idCardFront, idCardBack);
+
+            const user = new AccountModel({
+                username: userName,
+                password: hashedPassword,
+                fullName: name,
+                phone,
+                email,
+                birthDate: new Date(birthDate + 'Z').toISOString(),
+                address,
+                idCardFront: `/img/users/${userName}/${idCardFrontPath}`,
+                idCardBack: `/img/users/${userName}/${idCardBackPath}`
             });
+
+            user.save()
+                .then(() => {
+                    const emailData = {
+                        subject: '[SPACE HOLIC] Mật khẩu và tài khoản hệ thống SPACE HOLIC',
+                        toEmail: email,
+                        username: userName,
+                        password
+                    }
+
+                    emailer.sendEmail(emailData);
+                })
+                .then(() => {
+                    return res.json({
+                        code: 0,
+                        message: 'Đăng ký tài khoản thành công',
+                        data: user
+                    });
+                })
+                .catch(e => {
+                    return res.json({
+                        code: 0,
+                        message: 'Đăng ký tài khoản thất bại: ' + e.message
+                    })
+                });
+        });
     };
 
     // [POST] /api/accounts/login

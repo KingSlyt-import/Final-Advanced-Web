@@ -13,47 +13,47 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="icon" href="img/logo5.png" type="image/png">
     <title>Space Holic</title>
-  </body>
+    </body>
 </head>
 
 <body class="login-body">
-    <div class="container h-100 ">
+    <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100"">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12 m-auto">
                 <div class=" form-color row d-flex justify-content-center align-items-center h-100">
-                    <div class="h-100 d-flex align-self-start col-12 col-sm-12 col-md-12 col-xl-1 col-lg-1 justify-content-center mt-1 ">
+                    <div class="h-100 d-flex align-self-start col-12 col-sm-12 col-md-12 col-xl-1 col-lg-1 justify-content-center mt-1">
                         <a href="./index.html" class="btn btn-warning ml-5">Quay lại</a>   
                     </div>
                     <div class="text-center h-100 mx-auto d-block col-12 col-sm-12 col-md-8 col-lg-4 col-xl-4">
                         <img src="./img/logo5.png" class="logo-login">
                     </div>
-                    <form action="#" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7">
+                    <form action="http://localhost:3000/api/accounts/register" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7" enctype="multipart/form-data">
                         <div class="login-text text-center">Đăng Ký</div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label"  for="" >Email</label>
-                            <input type="text" class="form-control col-8 " required>      
+                            <input type="text" class="form-control col-8" name="email" >      
                         </div>
                         <div class="col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label"  for="">Họ và Tên</label>
-                            <input type="text" class="form-control col-8" required>
+                            <input type="text" class="form-control col-8" name="name" >
                         </div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label"  for="" >Số Điện Thoại</label>
-                            <input type="text" class="form-control col-8 " required>      
+                            <input type="text" class="form-control col-8" name="phone" >      
                         </div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label"  for="" >Địa chỉ</label>
-                            <input type="text" class="form-control col-8 " required>      
+                            <input type="text" class="form-control col-8" name="address" >      
                         </div>
                         <div class="col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label" for="">Ngày Sinh</label>
-                            <input type="date" value="Tháng/Ngày/Năm" class="form-control col-8" required>
+                            <input type="date" class="form-control col-8" name="birthDate" >
                         </div>
-                        <div class=" col-md-12 form-group form-inline " >
+                        <div class=" col-md-12 form-group form-inline" >
                             <label class="col-sm-4 col-form-label" >Ảnh mặt trước CMND/CCCD</label>
-                            <input class="col-8 form-control-lg cmnd" type="file">
+                            <input class="col-8 form-control-lg cmnd" name="idCardFront" type="file">
                             <label class="col-sm-4 col-form-label" for="">Ảnh mặt sau CMND/CCCD</label>
-                            <input class="col-8 form-control-lg cmnd" type="file">
+                            <input class="col-8 form-control-lg cmnd" name="idCardBack" type="file">
                         </div>
                         <div class="operator form-group">
                             <div class="login-button">
