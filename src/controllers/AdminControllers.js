@@ -1,5 +1,6 @@
 // core module
 const { AccountModel } = require('../repository/mongo/models/Account');
+require('dotenv').config();
 
 // npm module
 
@@ -18,7 +19,7 @@ class AdminControllers {
         const data = await AccountModel.find({ status: 'waiting' }).select('email fullName role status ').sort({ createdAt: -1 });
         return res.json({
             code: 0,
-            message: 'Get Waiting List Success',
+            message: 'Lấy danh sách tài khoản chờ kích hoạt thành công',
             data
         });
     };
@@ -28,7 +29,7 @@ class AdminControllers {
         const data = await AccountModel.find({ status: 'verified' }).select('email fullName role status').sort({ createdAt: -1 });
         return res.json({
             code: 0,
-            message: 'Get Verified List Success',
+            message: 'Lấy danh sách tài khoản đã kích hoạt thành công',
             data
         });
     }
@@ -38,14 +39,24 @@ class AdminControllers {
         const data = await AccountModel.find({ status: 'disabled' }).select('email fullName role status').sort({ createdAt: -1 });
         return res.json({
             code: 0,
-            message: 'Get Disabled List Success',
+            message: 'Lấy danh sách tài khoản đã vô hiệu hóa thành công',
             data
         });
     }
 
-    // [PUT] /api/admin/verify-account/:email
+    // [GET] /api/admin/get-softDisabled-list
+    async getSoftDisabledList(req, res) {
+        const data = await AccountModel.find({ status: 'softDisabled' }).select('email fullName role status').sort({ createdAt: -1 });
+        return res.json({
+            code: 0,
+            message: 'Lấy danh sách tài khoản đang bị khóa thành công',
+            data
+        });
+    }
+
+    // [PUT] /api/admin/verify-account/
     async verifyAccount(req, res) {
-        const { email } = req.params;
+        const { email } = req.user;
         const data = await AccountModel.findOneAndUpdate({ email, status: 'waiting' }, { status: 'verified' });
         if (!email) {
             return res.json({
@@ -78,9 +89,9 @@ class AdminControllers {
         });
     };
 
-    // [PUT] /api/admin/unlock-account/:email
+    // [PUT] /api/admin/unlock-account
     async unlockAccount(req, res) {
-        const { email } = req.params;
+        const { email } = req.user;
         const data = await AccountModel.findOneAndUpdate({ email, status: 'disabled' }, { status: 'waiting' });
         if (!email) {
             return res.json({

@@ -2,6 +2,7 @@
 const { AccountModel } = require('../repository/mongo/models/Account');
 const saveIdCard = require('../utils/util/saveIdCard');
 const emailer = require('../utils/email/index');
+const nodemailer = require('nodemailer');
 
 // npm module
 const jwt = require('jsonwebtoken');
@@ -340,6 +341,6 @@ class AccountControllers {
             message: 'Đổi mật khẩu thành công'
         });
     };
-}
+ }
 
 module.exports = new AccountControllers();

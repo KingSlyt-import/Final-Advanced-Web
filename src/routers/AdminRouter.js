@@ -15,8 +15,9 @@ router.get('/get-all-account', isLoggedIn, isAdmin, AdminControllers.getAllAccou
 router.get('/get-waiting-list', isLoggedIn, isAdmin, AdminControllers.getWaitingList);
 router.get('/get-verified-list', isLoggedIn, isAdmin, AdminControllers.getVerifiedList);
 router.get('/get-disabled-list', isLoggedIn, isAdmin, AdminControllers.getDisabledList);
+router.get('/get-softdisabled-list', isLoggedIn, isAdmin, AdminControllers.getSoftDisabledList);
 
-router.put('/verify-account/:email', isLoggedIn, isAdmin, AdminControllers.verifyAccount);
-router.put('/unlock-account/:email', isLoggedIn, isAdmin, AdminControllers.unlockAccount);
+router.put('/verify-account', isLoggedIn, isAdmin, AdminControllers.verifyAccount);
+router.put('/unlock-account', isLoggedIn, isAdmin, AdminControllers.unlockAccount);
 
 module.exports = router;
