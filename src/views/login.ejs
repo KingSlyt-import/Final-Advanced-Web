@@ -1,74 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="icon" href="img/logo5.png" type="image/png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="img/logo5.png" type="image/png" />
     <title>Space Holic</title>
-    </body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="login-body">
-    <div class="container h-100 ">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-12 col-lg-12 col-xl-12 m-auto">
-                <div class=" form-color row d-flex justify-content-center align-items-center h-100 pt-5 pb-5">
-                    <div class="h-100  d-flex align-self-start ">
-                        <a href="./index.html" class="btn btn-warning text-center ml-1">Quay lại</a>
-                    </div>
-                    <div class="text-center h-100 mx-auto d-block col-12 col-sm-12 col-md-8 col-lg-4 col-xl-4">
-                        <img src="./img/logo5.png" class="logo-login">
-                    </div>
-                    <form action="/api/accounts/login" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7">
-                        <div class="col-md-12 form-group form-inline justify-content-center align-items-center text-center">
-                            <div class="login-text text-center">Trang đăng nhập</div>
-                        </div>
+<body class="home_banner_area">
 
-                        <div class=" col-md-12 form-group form-inline p-0">
-                            <label class="col-sm-3 col-form-label" for="">Tài khoản</label>
-                            <input type="text" class="form-control col-8" name="username" required>
-                        </div>
-                        <div class="col-md-12 form-group form-inline p-0">
-                            <label class="col-sm-3 col-form-label" for="">Mật khẩu</label>
-                            <input type="password" class="form-control col-8" name="password" required>
-                        </div>
+    <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="form-color">
+            <form action="#">
+                <div class="row ">
+                    <div class="col col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 m-auto">
+                        <a href="index.html"><img src="./img/logo5.png" class="logo-login"></a>
+                    </div>
+                    <div class="col col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 m-auto">
+                        <div>
+                            <div class="login-text text-center">Đăng nhập</div>
+                            <div class="row form-group form-inline p-0">
+                                <label class="col-4 col-sm-3 col-form-label" for="email">Tài khoản</label>
+                                <input type="text" class="form-control col-8 " id="email" required>
+                            </div>
+                            <div class="row form-group form-inline p-0">
+                                <label class="col-4 col-sm-3 col-form-label" for="">Mật khẩu</label>
+                                <input type="text" class="form-control col-8" required>
+                            </div>
 
-                        <div class="operator form-group">
-                            <div class="login-button">
-                                <button type="submit">ĐĂNG NHẬP</button>
+                            <div class="row form-group form-inline p-0">
+                                <div class="col col-12">
+                                    <div class="operator d-flex justify-content-center text-center">
+                                        <div>
+                                            <button type="submit" class=" login-button">Đăng Nhập</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group forgot-pass d-flex justify-content-center text-center ">
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter"">Quên mật khẩu / Tên đăng nhập</a>
+                                </div>
+                            </div>
+                            <div class="row form-group forgot-pass d-flex justify-content-center text-center ">
+                                <a href="#" data-toggle="modal" data-target="#exampleModal"">Tạo tài khoản</a>
+                                </div>
                             </div>
                         </div>
-
-                        <div class=" form-group forgot-pass text-center">
-                            <a href="#">Quên mật khẩu / Tên đăng nhập</a>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class=" modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content p-0">
+                <div class="modal-body">
+                    <div class=" form-group  h-100 form-inline justify-content-center align-items-center">
+                        <img src="./img/logo5.png" class="logo-popup text-center">
+                    </div>
+                    <div class="col-md-12 form-group form-inline justify-content-center align-items-center text-center">
+                        <div class="recovery text-center login-text">
+                            Khôi Phục Tài Khoản</div>
+                    </div>
+                    <div class="col-md-12 form-group form-inline justify-content-center align-items-center text-center">
+                        <div class="recovery text-center recoveryText ">
+                            Nhập Email và Số điện thoại</div>
+                    </div>
+                    <div class=" col-md-12 form-group form-inline text-center p-0">
+                        <label class="col-sm-3 col-form-label" for="">Email</label>
+                        <input type="text" class="form-control col-8" required>
+                    </div>
+                    <div class=" col-md-12 form-group form-inline text-center p-0">
+                        <label class="col-sm-3 col-form-label" for="">Số điện thoại</label>
+                        <input type="text" class="form-control col-8" required>
+                    </div>
+                    <div class="col-md-12 form-inline ">
+                        <div class="col-sm-9 col-form-label back-button ">
+                            <a href="./index.html" class="btn btn-warning text-center">Quay lại</a>
                         </div>
-
-                        <div class=" form-group create-acc text-center">
-                            <a href="#">Tạo tài khoản</a>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-danger text-center">Gửi Yêu Cầu</button>
                         </div>
-
-                    </form>
-                </div>
-                <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
-                    <p class="footer-text-1 m-0 col-lg-8 col-md-12">
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved <i aria-hidden="true"></i> by Space Holic
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+    <div class=" form-group create-acc text-center">
+        <a href="#" data-toggle="modal" data-target="#exampleModal">Tạo tài khoản</a>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content p-0">
+                <div class="form-color">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 m-auto">
+                                <a href="index.html"><img src="./img/logo5.png" class="logo-login"></a>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9">
+                                <div class="login-text text-center">Đăng Ký</div>
+        
+                                <div class="row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label" for="email">Email</label>
+                                    <input type="text" class="form-control col-8 " id="email" required>
+                                </div>
+        
+                                <div class="row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label" for="">Họ và Tên</label>
+                                    <input type="text" class="form-control col-8" required>
+                                </div>
+                                <div class=" row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label" for="">Số Điện Thoại</label>
+                                    <input type="text" class="form-control col-8 " required>
+                                </div>
+                                <div class=" row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label" for="">Địa chỉ</label>
+                                    <input type="text" class="form-control col-8 " required>
+                                </div>
+                                <div class="row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label" for="">Ngày Sinh</label>
+                                    <input type="date" value="Tháng/Ngày/Năm" class="form-control col-8" required>
+                                </div>
+                                <div class=" row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label text-center" for="">Ảnh mặt trước
+                                        CMND/CCCD</label>
+                                    <input class="col-8 form-control cmnd" type="file">
+                                </div>
+                                <div class="row form-group form-inline p-0">
+                                    <label class="col-4 col-sm-3 col-form-label text-center" for="">Ảnh mặt sau
+                                        CMND/CCCD</label>
+                                    <input class="col-8 form-control cmnd" type="file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-3 col-sm-3 col-md-3 col-lg-4 col-xl-3">
+                                <div class="form-group back-btn">
+                                    <a href="./index.html" class="btn btn-warning text-center ml-4">Quay lại</a>
+                                </div>
+                            </div>
+                            <div class="col col-8 col-sm-8 col-md-9 col-lg-8 col-xl-9">
+                                <div class="operator form-group">
+                                    <div>
+                                        <button type="submit">Đăng Ký</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
+            <p class="footer-text-1 m-0 col-lg-8 col-md-12">
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved <i
+                    aria-hidden="true"></i> by
+                Space Holic
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 </body>
 

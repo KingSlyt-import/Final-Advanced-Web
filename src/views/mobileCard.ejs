@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="img/logo5.png" type="image/png" />
+    <title>Space Holic</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="bg-white navbar navbar-expand-lg navbar-light ">
+            <div class="container">
+                <a class="navbar-brand logo_h " href="index.html"><img src="img/logo3.png" class="mt-4"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav">
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Thao tác</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="deposit.html">Nạp tiền</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="transfer.html">Chuyển tiền</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="drawback.html">Rút tiền</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mobileCard.html">Mua thẻ điện thoại</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="trade.html">Lịch sử giao dịch</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                            <li class="nav-item submenu dropdown d-lg-none">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Thông tin</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="info.html">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#" ata-toggle="modal"
+                                        data-target="#exampleModalCenter">Đối mật khẩu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="bosungCMND2.html">Bổ sung CMND</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="index.html">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="right-button">
+                    <ul>
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <li class="nav-item dropdown ml-auto">
+                                <a class="nav-link dropdown-toggle text" href="#" id="navbardrop" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Lâm Chí Cường
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text" href="info.html">
+                                        <i class="bi bi-person mr-3"></i>
+                                        <span class=""> Thông tin cá nhân</span>
+                                    </a>
+                                    <a class="dropdown-item text" href="#" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        <i class="bi bi-gear mr-3"></i>
+                                        <span class=""> Đổi mật khẩu</span>
+                                    </a>
+                                    <a class="dropdown-item text" href="index.html">
+                                        <i class="bi bi-box-arrow-left mr-3"></i>
+                                        <span class=""> Đăng Xuất</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<body class="home_banner_area">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class=" form-group h-100 form-inline justify-content-center align-items-center">
+                        <img src="./img/logo5.png" class="logo-changepass text-center">
+                    </div>
+                    <div class="col-md-12 form-group form-inline justify-content-center align-items-center text-center">
+                        <div class="text-center recoveryHeader mt-4 mb-4">Đổi mật khẩu</div>
+                    </div>
+                    <div class=" changepasstext col-md-12 form-group form-inline p-0">
+                        <label class="col-sm-4 col-form-label" for="">Nhập mật khẩu cũ</label>
+                        <input type="text" class="form-control col-8" required>
+                    </div>
+                    <div class="changepasstext col-md-12 form-group form-inline p-0">
+                        <label class="col-sm-4 col-form-label" for="">Nhập mật khẩu mới</label>
+                        <input type="text" class="form-control col-8" required>
+                    </div>
+                    <div class="changepasstext col-md-12 form-group form-inline p-0">
+                        <label class="col-sm-4 col-form-label" for="">Xác nhận mật khẩu</label>
+                        <input type="text" class="form-control col-8" required>
+                    </div>
+                    <div class="col-md-12 form-inline p-0">
+                        <div class="back-button col-sm-9 ml-4 col-form-label">
+                            <a href="./index.html" class="btn btn-warning text-center recoveryBack">Quay lại</a>
+                        </div>
+                        <div class="send-button col-sm-2">
+                            <button type="submit" class="btn btn-danger text-center">Gửi Yêu Cầu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container h-100 ">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12 m-auto">
+                <div class=" form-color row d-flex justify-content-center align-items-center h-100 pt-5 pb-5 mt-5">
+                    <div class="text-center h-100 mx-auto d-block col-12 col-sm-12 col-md-8 col-lg-4 col-xl-4 ">
+                        <img src="./img/logo5.png" class="logo-login logo-drawback">
+                    </div>
+                    <form action="#" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7">
+                        <div class="login-text text-center drawback-text mobileCard-textHeader ">Mua Mã Thẻ Điện Thoại</div>
+                        <div class="col-md-12 form-group form-inline p-0 d-flex justify-content-center ">
+                            <select selected class="col-sm-10 col-form-label col-9">
+                                <option>Chọn Nhà Mạng</option>
+                                <option>Vinaphone</option>
+                                <option>Mobifone</option>
+                                <option>Viettel</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group form-inline p-0 d-flex justify-content-center">
+                            <select selected class="col-sm-10 col-form-label col-9" >
+                                <option>Chọn mệnh giá (VND)</option>
+                                <option>10,000</option>
+                                <option>20,000</option>
+                                <option>50,000</option>
+                                <option>100,000</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group form-inline p-0 d-flex justify-content-center">
+                            <select selected class="col-sm-10 col-form-label col-9">
+                                <option>Chọn Số Lượng</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 form-inline p-0 req-drawback ">
+                                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center">
+                                    <a href="logined.html" class="btn btn-warning text-center recoveryBack">Quay lại</a>
+                                </div>
+                                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center mobilecard">
+                                    <a href="mobileCard_info.html" class="btn btn-danger text-center">Mua thẻ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
+                    <p class="footer-text-1 m-0 col-lg-8 col-md-12">
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved <i
+                            aria-hidden="true"></i> by
+                        Space Holic
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

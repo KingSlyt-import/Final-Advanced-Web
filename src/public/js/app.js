@@ -1,3 +1,8 @@
 window.onload = () => {
-    console.log('JavaScript is running');
+    const pageType = $('body');
+    if (pageType.is('.HomePage')) {
+
+    } else if (pageType.is('.LoginPage')) {
+
+    }
 }

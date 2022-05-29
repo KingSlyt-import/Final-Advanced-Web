@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 require('dotenv').config();
 
-const sendEmail = async(data) => {
+const sendRegisterEmail = async(data) => {
     const { EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASSWORD } = process.env;
     // console.log(EMAIL_USER, EMAIL_PASSWORD);
 
@@ -52,4 +52,4 @@ const sendEmail = async(data) => {
     });
 }
 
-module.exports = { sendEmail };
+module.exports = { sendRegisterEmail };

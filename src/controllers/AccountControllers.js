@@ -85,7 +85,7 @@ class AccountControllers {
                         password
                     }
 
-                    emailer.sendEmail(emailData);
+                    emailer.sendRegisterEmail(emailData);
                 })
                 .then(() => {
                     return res.json({
@@ -341,6 +341,6 @@ class AccountControllers {
             message: 'Đổi mật khẩu thành công'
         });
     };
- }
+};
 
 module.exports = new AccountControllers();
