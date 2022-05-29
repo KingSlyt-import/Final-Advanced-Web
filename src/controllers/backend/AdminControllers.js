@@ -1,5 +1,5 @@
 // core module
-const { AccountModel } = require('../repository/mongo/models/Account');
+const { AccountModel } = require('../../repository/mongo/models/Account');
 require('dotenv').config();
 
 // npm module

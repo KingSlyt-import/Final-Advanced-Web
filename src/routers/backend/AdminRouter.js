@@ -1,7 +1,7 @@
 // core module
-const AdminControllers = require('../controllers/AdminControllers');
-const isLoggedIn = require('../utils/middlewares/login');
-const isAdmin = require('../utils/middlewares/admin');
+const AdminControllers = require('../../controllers/backend/AdminControllers');
+const isLoggedIn = require('../../utils/middlewares/login');
+const isAdmin = require('../../utils/middlewares/admin');
 
 // npm module
 const express = require('express');

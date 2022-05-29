@@ -10,13 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// express config routers
-const AccountRouter = require('./routers/AccountRouter');
-const AdminRouter = require('./routers/AdminRouter');
-
-app.use('/api/accounts', AccountRouter);
-app.use('/api/admin', AdminRouter);
-
 // Database 
 const database = require('./repository/mongo/config/index');
 
@@ -29,6 +22,18 @@ app.set('view engine', 'ejs');
 app.set('views', viewsDirectoryPath);
 
 app.use(express.static(publicDirectoryPath));
+
+
+// express config routers
+const UserInterface = require('./routers/frontend/UserRouter');
+
+app.use('/user', UserInterface);
+
+const AccountRouter = require('./routers/backend/AccountRouter');
+const AdminRouter = require('./routers/backend/AdminRouter');
+
+app.use('/api/accounts', AccountRouter);
+app.use('/api/admin', AdminRouter);
 
 // Routing
 app.get('/', (req, res) => {

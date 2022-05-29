@@ -1,8 +1,7 @@
 // core module
-const { AccountModel } = require('../repository/mongo/models/Account');
-const saveIdCard = require('../utils/util/saveIdCard');
-const emailer = require('../utils/email/index');
-const nodemailer = require('nodemailer');
+const { AccountModel } = require('../../repository/mongo/models/Account');
+const saveIdCard = require('../../utils/util/saveIdCard');
+const emailer = require('../../utils/email/index');
 
 // npm module
 const jwt = require('jsonwebtoken');

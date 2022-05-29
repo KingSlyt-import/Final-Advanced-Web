@@ -1,9 +1,9 @@
 // core module
-const AccountControllers = require('../controllers/AccountControllers');
-const isLoggedIn = require('../utils/middlewares/login');
-const registerValidator = require('../utils/validators/registerValidator');
-const loginValidator = require('../utils/validators/loginValidator');
-const changePasswordValidator = require('../utils/validators/changePasswordValidator');
+const AccountControllers = require('../../controllers/backend/AccountControllers');
+const isLoggedIn = require('../../utils/middlewares/login');
+const registerValidator = require('../../utils/validators/registerValidator');
+const loginValidator = require('../../utils/validators/loginValidator');
+const changePasswordValidator = require('../../utils/validators/changePasswordValidator');
 
 // npm module
 const express = require('express');
