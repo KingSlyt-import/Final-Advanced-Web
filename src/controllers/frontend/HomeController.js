@@ -1,4 +1,5 @@
 // core module
+const readJWT = require('../../utils/util/readJWT');
 
 // npm module
 
@@ -8,10 +9,14 @@ class HomeController {
     }
 
     index(req, res) {
-        res.render('logined');
+        const { token } = req.params;
+        console.log(token);
+        const data = readJWT(token);
+        console.log(data);
+        res.render('logined', { data });
     }
 
-    contact(req, res){
+    contact(req, res) {
         res.render('contact');
     }
 }

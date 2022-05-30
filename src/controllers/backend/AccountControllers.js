@@ -40,7 +40,6 @@ class AccountControllers {
             }
 
             const { name, email, phone, birthDate, address } = fields;
-            console.log(name, email, phone, birthDate, address);
 
             const checkEmailExists = await AccountModel.findOne({ email });
             if (checkEmailExists) {
@@ -342,7 +341,25 @@ class AccountControllers {
         });
     };
 
-    //CHECK VALID DATE OF CARD WHEN 
+    // [POST] /api/accounts/recover-password
+    async recoverPassword(req, res) {
+        const result = validationResult(req);
+        if (result.errors.length !== 0) {
+            let message = result.errors[0].msg;
+
+            return res.json({
+                code: 0,
+                message
+            })
+        };
+
+        const otp = (Math.floor(100000 + Math.random() * 900000)).toString();
+        const email = await AccountModel.findOne({ email });
+
+        if (email) {
+
+        }
+    };
 };
 
 module.exports = new AccountControllers();

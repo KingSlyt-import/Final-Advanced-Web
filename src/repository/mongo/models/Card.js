@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const CardSchema = new mongoose.Schema({
-    cardNumber: { type: String, required: true },
-    endTime: { type: Date, required: true },
+    cardId: { type: String, required: true },
     cvv: { type: String, required: true },
     note: { type: String, required: true },
+    expiredAt: { type: Date, required: true },
     createAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });

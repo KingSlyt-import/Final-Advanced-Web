@@ -1,9 +1,11 @@
 // core module
 const AccountControllers = require('../../controllers/backend/AccountControllers');
 const isLoggedIn = require('../../utils/middlewares/login');
+// validators
 const registerValidator = require('../../utils/validators/registerValidator');
 const loginValidator = require('../../utils/validators/loginValidator');
 const changePasswordValidator = require('../../utils/validators/changePasswordValidator');
+const recoverPasswordValidator = require('../../utils/validators/recoverPasswordValidator');
 
 // npm module
 const express = require('express');
@@ -19,5 +21,6 @@ router.post('/login', loginValidator, AccountControllers.login);
 
 router.get('/profile', isLoggedIn, AccountControllers.getProfile);
 router.post('/change-password', isLoggedIn, changePasswordValidator, AccountControllers.changePassword);
+router.post('/recover-password', recoverPasswordValidator, AccountControllers.recoverPassword);
 
 module.exports = router;

@@ -40,6 +40,15 @@ app.use('/api/accounts', AccountRouter);
 app.use('/api/admin', AdminRouter);
 app.use('/api/wallet', WalletRouter);
 
+app.get('/recover', (req, res) => {
+    const viewsData = {
+        otp: 123,
+        link: 'http://localhost:1234567890'
+    }
+
+    res.render('hoadoninfo', { viewsData });
+})
+
 const port = process.env.PORT || 3000;
 database.connect()
     .then(() => app.listen(port, () => console.log(`Express started on http://localhost:${port}; ` + 'press Ctrl-C to terminate. ')))

@@ -31,6 +31,4 @@ module.exports = [
     check('idCardBack')
     .exists().withMessage('Vui lòng cung cấp ảnh mặt sau CMND/CCCD')
     .notEmpty().withMessage('Ảnh mặt sau CMND/CCCD không được để trống'),
-
-    check('')
 ]

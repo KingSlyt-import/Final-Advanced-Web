@@ -33,7 +33,7 @@ class UserController {
                         message: 'Đăng nhập thất bại',
                     });
                 } else {
-                    res.redirect('/index');
+                    res.redirect(`/index/${data.token}`);
                 }
             })
     }
@@ -88,11 +88,11 @@ class UserController {
         res.render('mobileCard_info');
     }
 
-    contactLogined(req,res){
+    contactLogined(req, res) {
         res.render('contact_logined')
     }
 
-    OTP(req,res){
+    OTP(req, res) {
         res.render('OTP_Recovery');
     }
 }
