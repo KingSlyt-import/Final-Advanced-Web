@@ -41,45 +41,50 @@ class UserController {
     // [GET] /user/register
     register(req, res) {
         res.render('register');
-    }  
+    }
 
-    recoveryPass(req,res){
+    // [GET] /user/recovery-pass
+    recoveryPass(req, res) {
         res.render('recoveryPass_email');
     }
 
-    deposit(req, res){
+    // [GET] /user/deposit
+    deposit(req, res) {
         res.render('deposit');
     }
 
-    transfer(req, res){
+    // [GET] /user/transfer
+    transfer(req, res) {
         res.render('transfer');
     }
 
-    drawback(req, res){
+    // [GET] /user/drawback
+    drawback(req, res) {
         res.render('drawback');
     }
 
-    mobileCard(req, res){
+    // [GET] /user/
+    mobileCard(req, res) {
         res.render('mobileCard');
     }
 
-    trade(req, res){
+    trade(req, res) {
         res.render('trade');
     }
 
-    information(req, res){
+    information(req, res) {
         res.render('info')
     }
 
-    changepass(req, res){
+    changePass(req, res) {
         res.render('doimk');
     }
 
-    addIDCard(req, res){
+    addIDCard(req, res) {
         res.render('bosungCMND2');
     }
 
-    mobileInfor(req, res){
+    mobileInfo(req, res) {
         res.render('mobileCard_info');
     }
 }
