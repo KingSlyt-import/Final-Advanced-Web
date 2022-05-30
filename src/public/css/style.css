@@ -162,14 +162,12 @@ form .form-group label {
   background-color: rgba(255, 124, 57, 255);
   color: white;
   border: none;
-  width: 20%;
 }
 
 .back-button .btn-warning:hover {
   color: white;
   background-color: rgba(255, 94, 78, 255);
 }
-
 
 
 .back-btn .btn-warning {

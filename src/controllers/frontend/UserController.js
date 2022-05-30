@@ -46,6 +46,42 @@ class UserController {
     recoveryPass(req,res){
         res.render('recoveryPass_email');
     }
+
+    deposit(req, res){
+        res.render('deposit');
+    }
+
+    transfer(req, res){
+        res.render('transfer');
+    }
+
+    drawback(req, res){
+        res.render('drawback');
+    }
+
+    mobileCard(req, res){
+        res.render('mobileCard');
+    }
+
+    trade(req, res){
+        res.render('trade');
+    }
+
+    information(req, res){
+        res.render('info')
+    }
+
+    changepass(req, res){
+        res.render('doimk');
+    }
+
+    addIDCard(req, res){
+        res.render('bosungCMND2');
+    }
+
+    mobileInfor(req, res){
+        res.render('mobileCard_info');
+    }
 }
 
 module.exports = new UserController();

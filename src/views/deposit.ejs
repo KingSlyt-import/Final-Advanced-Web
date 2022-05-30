@@ -17,7 +17,7 @@
     <div class="main_menu">
         <nav class="bg-white navbar navbar-expand-lg navbar-light ">
             <div class="container">
-                <a class="navbar-brand logo_h " href="index.html"><img src="/img/logo3.png" class="mt-4"></a>
+                <a class="navbar-brand logo_h " href="/index"><img src="/img/logo3.png" class="mt-4"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -27,32 +27,36 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav">
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Thao tác</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="deposit.html">Nạp tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="transfer.html">Chuyển tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="drawback.html">Rút tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mobileCard.html">Mua thẻ điện
-                                            thoại</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="trade.html">Lịch sử giao dịch</a>
+                            <ul class="nav navbar-nav menu_nav">
+                                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                                    <li class="nav-item"><a class="nav-link" href="/index">Trang chủ</a></li>
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-haspopup="true" aria-expanded="false">Thao tác</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item"><a class="nav-link" href="/user/deposit">Nạp tiền</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/transfer">Chuyển tiền</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/drawback">Rút tiền</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/mobileCard">Mua thẻ điện
+                                                    thoại</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/trade">Lịch sử giao dịch</a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
-                            <li class="nav-item submenu dropdown d-lg-none">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Thông tin</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="info.html">Thông tin cá nhân</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Đối mật khẩu</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="bosungCMND2.html">Bổ sung CMND</a>
+                                    <li class="nav-item"><a class="nav-link" href="/contact">Liên hệ</a></li>
+                                    <li class="nav-item submenu dropdown d-lg-none">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-haspopup="true" aria-expanded="false">Thông tin</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item"><a class="nav-link" href="/user/information">Thông tin cá nhân</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/changepass">Đối mật khẩu</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="/user/addIDCard">Bổ sung CMND</a>
+                                            </li>
+                                            <li class="nav-item"><a class="nav-link" href="/">Đăng xuất</a></li>
+                                        </ul>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="index.html">Đăng xuất</a></li>
-                                </ul>
-                            </li>
+                                </div>
+                            </ul>
                         </div>
                     </ul>
                 </div>
@@ -61,23 +65,22 @@
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <li class="nav-item dropdown ml-auto">
                                 <a class="nav-link dropdown-toggle text" href="#" id="navbardrop" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Lâm Chí Cường
+                                    aria-haspopup="true" aria-expanded="false">Lâm Chí Cường
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item text" href="info.html">
+                                    <a class="dropdown-item text" href="/user/information">
                                         <i class="bi bi-person mr-3"></i>
                                         <span class=""> Thông tin cá nhân</span>
                                     </a>
-                                    <a class="dropdown-item text" href="#">
+                                    <a class="dropdown-item text" href="/user/changepass">
                                         <i class="bi bi-gear mr-3"></i>
                                         <span class=""> Đổi mật khẩu</span>
                                     </a>
-                                    <a class="dropdown-item text" href="bosungCMND2.html">
+                                    <a class="dropdown-item text" href="/user/addIDCard">
                                         <i class="bi bi-person-square mr-3"></i>
                                         <span class=""> Bổ sung CMND</span>
                                     </a>
-                                    <a class="dropdown-item text" href="index.html">
+                                    <a class="dropdown-item text" href="/">
                                         <i class="bi bi-box-arrow-left mr-3"></i>
                                         <span class=""> Đăng Xuất</span>
                                     </a>
@@ -119,7 +122,7 @@
                         </div>
                         <div class="col-md-12  form-inline p-0 req-drawback">
                             <div class="col-sm-9 col-form-label col-8 ">
-                                <a href="./logined.html" class="btn btn-warning text-center recoveryBack">Quay lại</a>
+                                <a href="/index" class="btn btn-warning text-center recoveryBack">Quay lại</a>
                             </div>
                             <div class="send-button col-sm-3 col-4">
                                 <button type="submit" class="btn btn-danger text-center">Nạp Tiền</button>
