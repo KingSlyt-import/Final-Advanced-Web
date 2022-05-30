@@ -41,6 +41,10 @@ class UserController {
     // [GET] /user/register
     register(req, res) {
         res.render('register');
+    }  
+
+    recoveryPass(req,res){
+        res.render('recoveryPass_email');
     }
 }
 
