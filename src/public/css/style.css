@@ -908,15 +908,6 @@ div {
   box-sizing: border-box;
 }
 
-header a {
-  float: right;
-  margin-top: 10px;
-  text-decoration: none;
-  color: #6658f3;
-  font-weight: 700;
-  font-family: 'Roboto', sans-serif;
-}
-
 .password {
   margin-top: 30px;
   background-color: #ffffff;
@@ -964,45 +955,23 @@ header a {
   margin-top: 25px;
 }
 
-.password .info__button {
-  height: 42px;
-  width: 180px;
-  display: block;
-  background-color: #08c4e3;
-  margin: 15px 0;
-  text-decoration: none;
-  border: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 10px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.password .info__button:focus {
-  outline: none;
-}
-
-footer p {
+.emailer-footer p {
   color: #727070;
   font-size: 12px;
   text-align: center;
   margin: 5px 0;
 }
 
-footer {
+.emailer-footer {
   margin-top: 20px;
 }
 
-footer div {
+.emailer-footer div {
   display: flex;
   justify-content: center !important;
 }
 
-footer div a {
+.emailer-footer div a {
   margin: 5px;
   color: #727070 !important;
   font-size: 12px;
