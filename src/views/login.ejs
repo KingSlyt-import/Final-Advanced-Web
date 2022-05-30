@@ -17,7 +17,7 @@
 
     <div class="container h-100 d-flex justify-content-center align-items-center">
         <div class="form-color">
-            <form action="#">
+            <form action="/user/login-process" method="post">
                 <div class="row ">
                     <div class="col col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 m-auto">
                         <a href="index.html"><img src="/img/logo5.png" class="logo-login"></a>
@@ -26,12 +26,12 @@
                         <div>
                             <div class="login-text text-center">Đăng nhập</div>
                             <div class="row form-group form-inline p-0">
-                                <label class="col-4 col-sm-3 col-form-label" for="email">Tài khoản</label>
-                                <input type="text" class="form-control col-8 " id="email" required>
+                                <label class="col-4 col-sm-3 col-form-label" for="username">Tài khoản</label>
+                                <input type="text" class="form-control col-8 " id="username" name="username" required>
                             </div>
                             <div class="row form-group form-inline p-0">
-                                <label class="col-4 col-sm-3 col-form-label" for="">Mật khẩu</label>
-                                <input type="text" class="form-control col-8" required>
+                                <label class="col-4 col-sm-3 col-form-label" for="password">Mật khẩu</label>
+                                <input type="text" class="form-control col-8" id="password" name="password" required>
                             </div>
 
                             <div class="row form-group form-inline p-0">

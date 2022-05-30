@@ -7,5 +7,6 @@ const router = express.Router();
 
 // routing
 router.get('/', HomeController.homepage);
+router.get('/index', HomeController.index);
 
 module.exports = router;
