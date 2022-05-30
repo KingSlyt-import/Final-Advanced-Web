@@ -110,6 +110,13 @@ ul {
   background-attachment: fixed;
 }
 
+/* index */
+.carousel{
+  border-style: groove;
+  border-radius: 10px;
+  border-color: rgba(172, 172, 172, 0.432);
+}
+
 ::-webkit-file-upload-button {
   display: none;
 }
