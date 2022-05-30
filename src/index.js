@@ -23,10 +23,11 @@ app.set('views', viewsDirectoryPath);
 
 app.use(express.static(publicDirectoryPath));
 
-
 // express config routers
+const HomeInterface = require('./routers/frontend/HomeRouter');
 const UserInterface = require('./routers/frontend/UserRouter');
 
+app.use('/', HomeInterface);
 app.use('/user', UserInterface);
 
 const AccountRouter = require('./routers/backend/AccountRouter');
@@ -34,12 +35,6 @@ const AdminRouter = require('./routers/backend/AdminRouter');
 
 app.use('/api/accounts', AccountRouter);
 app.use('/api/admin', AdminRouter);
-
-// Routing
-app.get('/', (req, res) => {
-    // res.render('index', { port });
-    res.render('register');
-})
 
 const port = process.env.PORT || 3000;
 database.connect()

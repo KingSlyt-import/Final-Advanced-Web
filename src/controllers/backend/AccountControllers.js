@@ -40,6 +40,7 @@ class AccountControllers {
             }
 
             const { name, email, phone, birthDate, address } = fields;
+            console.log(name, email, phone, birthDate, address);
 
             const checkEmailExists = await AccountModel.findOne({ email });
             if (checkEmailExists) {

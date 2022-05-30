@@ -1,8 +1,9 @@
 // core module
 const UserController = require('../../controllers/frontend/UserController');
-const router = require('../backend/AdminRouter');
 
 // npm module
+const express = require('express');
+const router = express.Router();
 
 // routing
 router.get('/login', UserController.login);

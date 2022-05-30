@@ -6,10 +6,10 @@ module.exports = (userName, idCardFront, idCardBack) => {
     const photoFolderPath = path.join(__dirname, `../../public/img/users/${userName}/`);
 
     const idCardFrontOldPath = idCardFront.filepath;
-    const idCardFrontNewPath = photoFolderPath + idCardFront.newFilename + '.png';
+    const idCardFrontNewPath = photoFolderPath + 'idCardFront.png';
 
     const idCardBackOldPath = idCardBack.filepath;
-    const idCardBackNewPath = photoFolderPath + idCardBack.newFilename + '.png';
+    const idCardBackNewPath = photoFolderPath + 'idCardBack.png';
 
     fs.mkdir(photoFolderPath, () => {
         fs.rename(idCardFrontOldPath, idCardFrontNewPath, (error) => {
@@ -29,5 +29,5 @@ module.exports = (userName, idCardFront, idCardBack) => {
         });
     });
 
-    return [idCardFront.newFilename + '.png', idCardBack.newFilename + '.png'];
+    return ['idCardFront.png', 'idCardBack.png'];
 }
