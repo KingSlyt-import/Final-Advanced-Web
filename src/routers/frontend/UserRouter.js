@@ -31,4 +31,5 @@ router.get('/add-id-card', UserController.addIDCard);
 
 router.get('/mobile-info', UserController.mobileInfo);
 
+router.get('/contact-user', UserController.contactLogined);
 module.exports = router;

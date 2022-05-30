@@ -87,6 +87,14 @@ class UserController {
     mobileInfo(req, res) {
         res.render('mobileCard_info');
     }
+
+    contactLogined(req,res){
+        res.render('contact_logined')
+    }
+
+    OTP(req,res){
+        res.render('OTP_Recovery');
+    }
 }
 
 module.exports = new UserController();
