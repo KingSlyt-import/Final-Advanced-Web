@@ -7,6 +7,7 @@ const router = express.Router();
 
 // routing
 router.get('/register', UserController.register);
+router.post('/register-process', UserController.registerProcess);
 
 router.get('/login', UserController.login);
 router.post('/login-process', UserController.loginProcess);

@@ -282,7 +282,7 @@ class AccountControllers {
             });
         }
 
-        const data = {
+        const response = {
             fullName: userData.fullName,
             email: userData.email,
             phone: userData.phone,
@@ -297,7 +297,7 @@ class AccountControllers {
         return res.json({
             code: 0,
             message: 'Nhận thông tin người dùng thành công',
-            data
+            response
         });
     };
 

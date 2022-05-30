@@ -27,6 +27,7 @@ class UserController {
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 if (data.code !== 0) {
                     return res.json({
                         code: 1,
@@ -43,11 +44,42 @@ class UserController {
         res.render('register');
     }
 
+    // [POST] register-process(example)
+    registerProcess(req,res){
+        fetch(`http://localhost:${port}/api/accounts/register`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: req.body.email,
+                    name: req.body.name,
+                    phone: req.body.phone,
+                    address: req.body.address,
+                    birthDate: req.body.birthDate,
+                    idCardFront: req.body.idCardFront,
+                    idCardBack: req.body.idCardBack
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code !== 0) {
+                    return res.json({
+                        code: 1,
+                        message: 'Đăng nhập thất bại',
+                    });
+                } else {
+                    res.redirect('/index');
+                }
+            })
+    }
+
     // [GET] /user/recovery-pass
     recoveryPass(req, res) {
         res.render('recoveryPass_email');
     }
-
+    
     // [GET] /user/deposit
     deposit(req, res) {
         res.render('deposit');
@@ -63,36 +95,57 @@ class UserController {
         res.render('drawback');
     }
 
-    // [GET] /user/
+    // [GET] /user/mobile-card
     mobileCard(req, res) {
         res.render('mobileCard');
     }
 
+    // [GET] /user/trade
     trade(req, res) {
         res.render('trade');
     }
 
+    // [GET] /user/information
     information(req, res) {
-        res.render('info')
+        const  viewsData = undefined;
+        fetch(`http://localhost:${port}/api/accounts/profile`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+
+        console.log(viewsData);
+        res.render('info', {viewsData});
     }
 
+    // [GET] /user/change-pass
     changePass(req, res) {
         res.render('doimk');
     }
 
+    // [GET] /user/add-id-card
     addIDCard(req, res) {
         res.render('bosungCMND2');
     }
 
+    // [GET] /user/add-id-card
     mobileInfo(req, res) {
         res.render('mobileCard_info');
     }
 
-    contactLogined(req, res) {
+    // [GET] /user/add-id-card
+    contactLogined(req,res){
         res.render('contact_logined')
     }
 
-    OTP(req, res) {
+    // [GET] /user/add-id-card
+    OTP(req,res){
         res.render('OTP_Recovery');
     }
 }
