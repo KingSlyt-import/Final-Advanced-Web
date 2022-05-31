@@ -47,7 +47,7 @@ class UserController {
     }
 
     // [POST] register-process(example)
-    registerProcess(req,res){
+    registerProcess(req, res) {
         fetch(`http://localhost:${port}/api/accounts/register`, {
                 method: 'POST',
                 headers: {
@@ -81,10 +81,26 @@ class UserController {
     recoveryPass(req, res) {
         res.render('recoveryPass_email');
     }
-    
+
     // [GET] /user/deposit
     deposit(req, res) {
-        res.render('deposit');
+        const { token } = req.params;
+        const data = readJWT(token);
+        fetch(`http://localhost:${port}/api/accounts/profile`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(response => {
+                res.render('deposit', {
+                    data,
+                    token
+                });
+            });
     }
 
     // [GET] /user/transfer
@@ -151,17 +167,17 @@ class UserController {
     }
 
     // [GET] /user/add-id-card
-    contactLogined(req,res){
+    contactLogined(req, res) {
         res.render('contact_logined')
     }
 
     // [GET] /user/add-id-card
-    OTP(req,res){
+    OTP(req, res) {
         res.render('OTP_Recovery');
     }
 
     // [GET] /user/detail-trade
-    detailedTrade(req,res){
+    detailedTrade(req, res) {
         res.render('hoadoninfo');
     }
 }

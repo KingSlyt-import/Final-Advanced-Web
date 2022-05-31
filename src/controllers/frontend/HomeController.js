@@ -12,8 +12,8 @@ class HomeController {
         const { token } = req.params;
         // console.log(token);
         const data = readJWT(token);
-        // console.log(data);
-        res.render('logined', { 
+        console.log(data);
+        res.render('logined', {
             data,
             token
         });
