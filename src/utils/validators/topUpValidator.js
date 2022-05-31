@@ -9,7 +9,7 @@ module.exports = [
     check('cvv')
     .exists().withMessage('Vui lòng nhập CVV')
     .notEmpty().withMessage('Không được để trống CVV')
-    .isLength({ min: 6 }).withMessage('CVV ít nhất 6 ký tự'),
+    .isLength({ max: 3 }).withMessage('CVV có nhiều nhất 3 ký tự'),
 
     check('expiredDate')
     .exists().withMessage('Vui lòng nhập ngày hết hạn của thẻ')

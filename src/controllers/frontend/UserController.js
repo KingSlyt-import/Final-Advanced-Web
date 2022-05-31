@@ -178,7 +178,7 @@ class UserController {
                         message: response.message
                     });
                 } else {
-                    res.redirect(`/index/${token}`);
+                    res.redirect('/user/deposit');
                 }
             })
     }

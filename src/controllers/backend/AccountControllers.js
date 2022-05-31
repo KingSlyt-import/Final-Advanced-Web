@@ -430,6 +430,30 @@ class AccountControllers {
             })
         }
     }
+
+    async firstLog(req, res) {
+        const { email } = req.user;
+        const { password } = req.body;
+        const hashedPassword = bcrypt.hashSync(password, 10);
+
+        AccountModel.findOne({ email })
+            .then(account => {
+                if (!account) {
+                    return res.json({
+                        code: 3,
+                        message: 'Không tìm thấy người dùng'
+                    });
+                };
+
+                await AccountModel.findOneAndUpdate({ email }, { password: hashedPassword, firstLog: false });
+            })
+            .catch(error => {
+                return res.json({
+                    code: 3,
+                    message: error.message
+                })
+            })
+    }
 };
 
 module.exports = new AccountControllers();

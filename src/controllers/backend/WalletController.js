@@ -12,37 +12,54 @@ class WalletController {
             let message = result.errors[0].msg;
 
             return res.json({
-                code: 0,
+                code: 3,
                 message
             })
         }
 
         const { cardId, expiredDate, cvv, amount } = req.body;
+        const { email } = req.user;
+
         const card = await CardModel.findOne({ cardId });
 
-        console.log(cardId, expiredDate, cvv, amount);
+        if (!card) {
+            return res.json({
+                code: 3,
+                message: 'Không tìm thấy thẻ tín dụng của quý khách'
+            });
+        }
 
-        // if (!card) {
-        //     return res.json({
-        //         code: 3,
-        //         message: 'Không tìm thấy thẻ tín dụng của quý khách'
-        //     });
-        // }
+        if (cvv !== card.cvv) {
+            return res.json({
+                code: 3,
+                message: 'Mã CVV thẻ tín dụng của quý khách không hợp lệ'
+            });
+        }
 
-        // if (cvv !== card.cvv) {
-        //     return res.json({
-        //         code: 3,
-        //         message: 'Mã CVV thẻ tín dụng của quý khách không hợp lệ'
-        //     });
-        // }
+        const endDate = new Date(expiredDate + 'Z').toISOString();
+        if ((card.expiredAt).toISOString() !== endDate) {
+            return res.json({
+                code: 3,
+                message: 'Ngày hết hạn thẻ tín dụng của quý khách không hợp lệ'
+            });
+        }
 
-        // const endDate = new Date(expiredDate + 'Z').toISOString();
-        // if (expiredDate !== card.expiredAt) {
-        //     return res.json({
-        //         code: 3,
-        //         message: 'Ngày hết hạn thẻ tín dụng của quý khách không hợp lệ'
-        //     });
-        // }
+        const user = await AccountModel.findOne({ email });
+        const total = user.money + Number(amount);
+
+        AccountModel.findOneAndUpdate({ email }, { money: Number(total) })
+            .then(() => {
+                return res.json({
+                    code: 0,
+                    message: 'Nạp tiền thành công'
+                })
+            })
+            .catch(error => {
+                return res.json({
+                    code: 3,
+                    message: error.message
+                })
+            })
     }
 
     async create(req, res) {
