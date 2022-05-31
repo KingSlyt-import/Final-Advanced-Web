@@ -44,10 +44,23 @@ class WalletController {
             });
         }
 
+        if (cardId === '222222' && amount > 1000000) {
+            return res.json({
+                code: 3,
+                message: card.description
+            });
+        } else if (cardId === '333333') {
+            return res.json({
+                code: 3,
+                message: card.description
+            });
+        }
+
         const user = await AccountModel.findOne({ email });
         const total = user.money + Number(amount);
+        const tradeCount = user.tradeCount + 1;
 
-        AccountModel.findOneAndUpdate({ email }, { money: Number(total) })
+        AccountModel.findOneAndUpdate({ email }, { money: Number(total), tradeCount })
             .then(() => {
                 return res.json({
                     code: 0,
