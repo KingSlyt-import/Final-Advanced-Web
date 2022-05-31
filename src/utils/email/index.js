@@ -9,26 +9,26 @@ require('dotenv').config();
 
 const { EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASSWORD, CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = process.env;
 
-const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
-const authOptions = {
-    type: 'OAuth2',
-    user: EMAIL_USER,
-    pass: EMAIL_PASSWORD,
-    clientId: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
-    refreshToken: REFRESH_TOKEN
+const getAccessToken = async() => {
+    const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+    const accessToken = await oAuth2Client.getAccessToken();
+    return accessToken;
 };
 
 const sendRegisterEmail = async(data) => {
-    const accessToken = await oAuth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         // host: EMAIL_HOST,
         // port: EMAIL_PORT,
         auth: {
-            ...authOptions,
-            accessToken
+            type: 'OAuth2',
+            user: EMAIL_USER,
+            pass: EMAIL_PASSWORD,
+            clientId: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            refreshToken: REFRESH_TOKEN,
+            accessToken: getAccessToken
         },
         // secure: false,
         // tls: {
@@ -64,14 +64,18 @@ const sendRegisterEmail = async(data) => {
 };
 
 const sendRecoverPasswordEmail = async(data) => {
-    const accessToken = await oAuth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         // host: EMAIL_HOST,
         // port: EMAIL_PORT,
         auth: {
-            ...authOptions,
-            accessToken
+            type: 'OAuth2',
+            user: EMAIL_USER,
+            pass: EMAIL_PASSWORD,
+            clientId: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            refreshToken: REFRESH_TOKEN,
+            accessToken: getAccessToken
         },
         // secure: false,
         // tls: {

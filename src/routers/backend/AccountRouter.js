@@ -14,13 +14,13 @@ const router = express.Router();
 // routing
 router.get('/', AccountControllers.getAccountController);
 router.get('/get-all-user', isLoggedIn, AccountControllers.getAllUser);
-router.get('/get-user-by-email', isLoggedIn, AccountControllers.getUserByEmail);
+router.get('/get-user-by-email', AccountControllers.getUserByEmail);
 
 router.post('/register', registerValidator, AccountControllers.register);
 router.post('/login', loginValidator, AccountControllers.login);
 
 router.get('/profile', isLoggedIn, AccountControllers.getProfile);
 router.post('/change-password', isLoggedIn, changePasswordValidator, AccountControllers.changePassword);
-router.post('/recover-password', recoverPasswordValidator, AccountControllers.recoverPassword);
+router.post('/send-otp', recoverPasswordValidator, AccountControllers.sendOTP);
 
 module.exports = router;

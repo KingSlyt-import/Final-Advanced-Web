@@ -1,6 +1,7 @@
 // core module
 const { AccountModel } = require('../../repository/mongo/models/Account');
 const saveIdCard = require('../../utils/util/saveIdCard');
+const readJWT = require('../../utils/util/readJWT');
 const emailer = require('../../utils/email/index');
 
 // npm module
@@ -8,6 +9,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const formidable = require('formidable');
 const { validationResult } = require('express-validator');
+
+const port = process.env.PORT || 3000;
 
 class AccountControllers {
     // [GET] /api/accounts/
@@ -87,11 +90,7 @@ class AccountControllers {
                     emailer.sendRegisterEmail(emailData);
                 })
                 .then(() => {
-                    return res.json({
-                        code: 0,
-                        message: 'Đăng ký tài khoản thành công',
-                        data: user
-                    });
+                    return res.redirect('/user/login');
                 })
                 .catch(e => {
                     return res.json({
@@ -213,7 +212,7 @@ class AccountControllers {
             status: user.status
         }, JWT_SECRET, {
             expiresIn: '1h'
-        }, (error, token) => {
+        }, async(error, token) => {
             if (error) throw error;
 
             dataUpdate = {
@@ -224,7 +223,7 @@ class AccountControllers {
                 }
             };
 
-            AccountModel.findByIdAndUpdate({ _id: user._id }, dataUpdate);
+            await AccountModel.findByIdAndUpdate({ _id: user._id }, dataUpdate);
 
             return res.status(200).json({
                 code: 0,
@@ -252,9 +251,9 @@ class AccountControllers {
         });
     };
 
-    // [GET] /api/accounts/get-all-user-by-email
+    // [GET] /api/accounts/get-user-by-email
     async getUserByEmail(req, res) {
-        const { email } = req.user;
+        const { email } = req.body;
         const data = await AccountModel.find({ email });
 
         if (!data) {
@@ -291,7 +290,7 @@ class AccountControllers {
             role: userData.role,
             status: userData.status,
             money: userData.money,
-            tradeCount: userData.tradeCount,
+            tradeCount: userData.tradeCount
         }
 
         return res.json({
@@ -341,8 +340,8 @@ class AccountControllers {
         });
     };
 
-    // [POST] /api/accounts/recover-password
-    async recoverPassword(req, res) {
+    // [POST] /api/accounts/send-otp
+    async sendOTP(req, res) {
         const result = validationResult(req);
         if (result.errors.length !== 0) {
             let message = result.errors[0].msg;
@@ -353,13 +352,56 @@ class AccountControllers {
             })
         };
 
-        const otp = (Math.floor(100000 + Math.random() * 900000)).toString();
-        const email = await AccountModel.findOne({ email });
+        const { email } = req.body;
+        const user = await AccountModel.findOne({ email });
 
-        if (email) {
+        if (user) {
+            const { JWT_SECRET } = process.env;
 
+            const otpCode = (Math.floor(100000 + Math.random() * 900000)).toString();
+
+            jwt.sign({
+                otpCode,
+                email
+            }, JWT_SECRET, {
+                expiresIn: '10m'
+            }, async(error, token) => {
+                if (error) throw error;
+
+                const emailData = {
+                    subject: '[SPACE HOLIC] Thông tin khôi phục mật khẩu hệ thống SPACE HOLIC',
+                    toEmail: email,
+                    otp: otpCode,
+                    link: `http://localhost:${port}/user/recover-password/${token}`
+                }
+
+                emailer.sendRecoverPasswordEmail(emailData);
+
+                const otp = {
+                    otp: otpCode,
+                    lastTime: Date.now()
+                }
+                await AccountModel.findOneAndUpdate({ email }, { otp });
+            });
         }
+
+        return res.json({
+            code: 0,
+            message: 'Đã gửi thông tin khôi phục mật khẩu đến mail của bạn',
+        });
     };
+
+    async recoverPassword(req, res) {
+        const { otp } = req.body;
+        const { token } = req.params;
+
+        const data = readJWT(token);
+        const user = await AccountModel.findOne({ email: data.email });
+
+        if ((user.otp.code).toString() === otp) {
+            await AccountModel.findOneAndUpdate({})
+        }
+    }
 };
 
 module.exports = new AccountControllers();

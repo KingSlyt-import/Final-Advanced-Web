@@ -28,7 +28,7 @@ const AccountSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     otp: {
-        code: { type: Number, default: 0 },
+        code: { type: String, default: 0 },
         lastTime: { type: Date, default: Date.now }
     },
     loginAttempt: {
