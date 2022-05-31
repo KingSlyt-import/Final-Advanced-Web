@@ -154,18 +154,14 @@ class AccountControllers {
                     code: 3,
                     message: 'Mật khẩu không chính xác'
                 });
-            }
-
-            // Nếu số lần đăng nhập bất thường nhỏ hơn 3, cộng số lần đăng nhập bất thường lên 1
-            if (user.loginAttempt.count <= 2) {
+            } else if (user.loginAttempt.count < 3) { // Nếu số lần đăng nhập bất thường nhỏ hơn 3, cộng số lần đăng nhập bất thường lên 1
                 dataUpdate = {
                     loginAttempt: {
                         ...user.loginAttempt,
                         count: user.loginAttempt.count + 1
                     }
                 }
-            } else {
-                // Nếu người dùng đã bị đánh dấu đăng nhập bất thường, tài khoản sẽ chuyển sang trạng thái disabled
+            } else { // Nếu người dùng đã bị đánh dấu đăng nhập bất thường, tài khoản sẽ chuyển sang trạng thái disabled
                 if (user.loginAttempt.penalty === true) {
                     dataUpdate = {
                         status: 'disabled'
@@ -201,36 +197,36 @@ class AccountControllers {
                         message: 'Có lỗi trong quá trình đăng nhập: ' + e.message
                     });
                 });
-        }
+        } else {
+            const { JWT_SECRET } = process.env;
+            jwt.sign({
+                email: user.email,
+                fullName: user.fullName,
+                firstLog: user.firstLog,
+                role: user.role,
+                status: user.status
+            }, JWT_SECRET, {
+                expiresIn: '1h'
+            }, async(error, token) => {
+                if (error) throw error;
 
-        const { JWT_SECRET } = process.env;
-        jwt.sign({
-            email: user.email,
-            fullName: user.fullName,
-            firstLog: user.firstLog,
-            role: user.role,
-            status: user.status
-        }, JWT_SECRET, {
-            expiresIn: '1h'
-        }, async(error, token) => {
-            if (error) throw error;
+                dataUpdate = {
+                    loginAttempt: {
+                        count: 0,
+                        lastTime: new Date(),
+                        penalty: false
+                    }
+                };
 
-            dataUpdate = {
-                loginAttempt: {
-                    count: 0,
-                    lastTime: new Date(),
-                    penalty: false
-                }
-            };
+                await AccountModel.findByIdAndUpdate({ _id: user._id }, dataUpdate);
 
-            await AccountModel.findByIdAndUpdate({ _id: user._id }, dataUpdate);
-
-            return res.status(200).json({
-                code: 0,
-                message: 'Đăng nhập thành công',
-                token
+                return res.status(200).json({
+                    code: 0,
+                    message: 'Đăng nhập thành công',
+                    token
+                });
             });
-        });
+        }
     };
 
     // [GET] /api/accounts/get-all-user

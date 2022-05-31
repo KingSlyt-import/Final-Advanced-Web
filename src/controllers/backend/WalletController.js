@@ -20,28 +20,29 @@ class WalletController {
         const { cardId, expiredDate, cvv, amount } = req.body;
         const card = await CardModel.findOne({ cardId });
 
-        if (!card) {
-            return res.json({
-                code: 3,
-                message: 'Không tìm thấy thẻ tín dụng của quý khách'
-            });
-        }
+        console.log(cardId, expiredDate, cvv, amount);
 
-        if (cvv !== card.cvv) {
-            return res.json({
-                code: 3,
-                message: 'Mã CVV thẻ tín dụng của quý khách không hợp lệ'
-            });
-        }
+        // if (!card) {
+        //     return res.json({
+        //         code: 3,
+        //         message: 'Không tìm thấy thẻ tín dụng của quý khách'
+        //     });
+        // }
 
+        // if (cvv !== card.cvv) {
+        //     return res.json({
+        //         code: 3,
+        //         message: 'Mã CVV thẻ tín dụng của quý khách không hợp lệ'
+        //     });
+        // }
+
+        // const endDate = new Date(expiredDate + 'Z').toISOString();
         // if (expiredDate !== card.expiredAt) {
         //     return res.json({
         //         code: 3,
         //         message: 'Ngày hết hạn thẻ tín dụng của quý khách không hợp lệ'
         //     });
         // }
-
-
     }
 
     async create(req, res) {

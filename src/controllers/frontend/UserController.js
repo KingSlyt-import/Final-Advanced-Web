@@ -1,7 +1,6 @@
 // core module
 require('dotenv').config();
 
-const { response } = require('express');
 // npm module
 const fetch = require('node-fetch');
 const readJWT = require('../../utils/util/readJWT');
@@ -153,6 +152,37 @@ class UserController {
             });
     }
 
+    // [POST] /user/deposit-process
+    depositProcess(req, res) {
+        const { token } = req.params;
+        const data = readJWT(token);
+        fetch(`http://localhost:${port}/api/wallet/top-up`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    cardId: req.body.cardId,
+                    cvv: req.body.cvv,
+                    expiredDate: req.body.expiredDate,
+                    amount: req.body.amount
+                })
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.code !== 0) {
+                    return res.json({
+                        code: 3,
+                        message: response.message
+                    });
+                } else {
+                    res.redirect(`/index/${token}`);
+                }
+            })
+    }
+
     // [GET] /user/transfer
     transfer(req, res) {
         res.render('transfer');
@@ -176,7 +206,6 @@ class UserController {
     // [GET] /user/information/:token
     information(req, res) {
         const { token } = req.params;
-        const data = readJWT(token);
         fetch(`http://localhost:${port}/api/accounts/profile`, {
                 method: 'GET',
                 headers: {

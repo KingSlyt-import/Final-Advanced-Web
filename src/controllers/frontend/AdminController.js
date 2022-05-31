@@ -9,11 +9,11 @@ const port = process.env.PORT || 3000;
 
 // routing
 class AdminController {
-    receiptinfo(req, res){
+    receiptinfo(req, res) {
         res.render('hoadoninfo');
     }
 
-    userlist(req, res){
+    userlist(req, res) {
         const { token, status } = req.params;
         const data = readJWT(token);
         let link = '';
@@ -21,19 +21,16 @@ class AdminController {
         if (data.code !== 0) {
             return res.redirect('/');
         }
-        if(status === 'waiting'){
+        if (status === 'waiting') {
             link = 'get-waiting-list';
             title = 'DANH SÁCH TÀI KHOẢN CHỜ KÍCH HOẠT';
-        }
-        else if (status === 'verified'){
+        } else if (status === 'verified') {
             link = 'get-verified-list';
             title = 'DANH SÁCH TÀI KHOẢN ĐANG KÍCH HOẠT';
-        }
-        else if (status === 'disabled'){
+        } else if (status === 'disabled') {
             link = 'get-disabled-list';
             title = 'DANH SÁCH TÀI KHOẢN BỊ KHÓA';
-        }
-        else if (status === 'soft-disabled'){
+        } else if (status === 'soft-disabled') {
             link = 'get-softdisabled-list';
             title = 'DANH SÁCH TÀI KHOẢN VÔ HIỆU HÓA';
         }
@@ -63,10 +60,10 @@ class AdminController {
             });
     }
 
-    infoAdmin(req, res){
+    infoAdmin(req, res) {
         const { token, email } = req.params;
         const data = readJWT(token);
-        fetch(`http://localhost:${port}/api/admin/get-user-by-email/${email}`, {
+        fetch(`http://localhost:${port}/api/admin/get-user-info/${email}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -82,7 +79,7 @@ class AdminController {
                         message: 'Lấy thông tin người dùng thất bại',
                     });
                 } else {
-                    res.render('info_admin', {token, data: response.data});
+                    res.render('info', { token, data: response.data });
                 }
             });
     }

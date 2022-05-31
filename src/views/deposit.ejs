@@ -78,23 +78,23 @@
                     <div class="text-center h-100 mx-auto d-block col-12 col-sm-12 col-md-8 col-lg-4 col-xl-4 ">
                         <img src="/img/logo5.png" class="logo-login logo-drawback">
                     </div>
-                    <form action="#" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7">
+                    <form action="/user/deposit-process/<%= token %>" method="post" class="col-12 col-md-12 col-sm-12 col-lg-7 col-xl-7">
                         <div class="login-text text-center drawback-text">Nạp tiền</div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label col-3" for="">Số thẻ</label>
-                            <input type="text" class="form-control col-8 " required>
+                            <input type="text" class="form-control col-8 " name="cardId" required>
                         </div>
                         <div class="col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label col-3" for="">Ngày hết hạn</label>
-                            <input type="date" class="form-control col-8" required>
+                            <input type="date" class="form-control col-8" name="expiredDate" required>
                         </div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label col-3" for="">Mã CVV</label>
-                            <input type="text" class="form-control col-8 " required>
+                            <input type="text" class="form-control col-8 " name="cvv" required>
                         </div>
                         <div class=" col-md-12 form-group form-inline p-0">
                             <label class="col-sm-3 col-form-label col-3" for="">Số tiền</label>
-                            <input type="number" class="form-control col-8 " required>
+                            <input type="number" class="form-control col-8 " name="amount" required>
                         </div>
                         <div class="col-md-12  form-inline p-0 req-drawback">
                             <div class="col-sm-9 col-form-label col-8 ">

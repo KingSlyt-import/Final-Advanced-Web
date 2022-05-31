@@ -19,6 +19,7 @@ router.get('/recover-password/:token', UserController.recoverPassword);
 router.post('/recover-password/:token', UserController.recoverPasswordProcess);
 
 router.get('/deposit/:token', UserController.deposit);
+router.post('/deposit-process/:token', UserController.depositProcess);
 
 router.get('/transfer/:token', UserController.transfer);
 

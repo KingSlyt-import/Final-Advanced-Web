@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 // routing
-router.post('/top-up', topUpValidator, WalletController.topUp);
+router.post('/top-up', isLoggedIn, topUpValidator, WalletController.topUp);
 router.get('/create', WalletController.create);
 
 module.exports = router;

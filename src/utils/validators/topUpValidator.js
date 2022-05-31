@@ -13,5 +13,11 @@ module.exports = [
 
     check('expiredDate')
     .exists().withMessage('Vui lòng nhập ngày hết hạn của thẻ')
-    .notEmpty().withMessage('Không được để trống ngày hết hạn của thẻ')
+    .notEmpty().withMessage('Không được để trống ngày hết hạn của thẻ'),
+
+    check('amount')
+    .exists().withMessage('Vui lòng nhập số tiền cần chuyển')
+    .notEmpty().withMessage('Không được để số tiền cần chuyển')
+    .isNumeric().withMessage('Số tiền cần chuyển không hợp lệ'),
+
 ]
