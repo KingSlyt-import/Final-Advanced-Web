@@ -10,10 +10,13 @@ class HomeController {
 
     index(req, res) {
         const { token } = req.params;
-        console.log(token);
+        // console.log(token);
         const data = readJWT(token);
-        console.log(data);
-        res.render('logined', { data });
+        // console.log(data);
+        res.render('logined', { 
+            data,
+            token
+        });
     }
 
     contact(req, res) {

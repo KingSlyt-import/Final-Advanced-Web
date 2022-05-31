@@ -1,8 +1,10 @@
 // core module
 require('dotenv').config();
 
+const { response } = require('express');
 // npm module
 const fetch = require('node-fetch');
+const readJWT = require('../../utils/util/readJWT');
 
 const port = process.env.PORT || 3000;
 
@@ -27,7 +29,7 @@ class UserController {
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.code !== 0) {
                     return res.json({
                         code: 1,
@@ -105,23 +107,32 @@ class UserController {
         res.render('trade');
     }
 
-    // [GET] /user/information
+    // [GET] /user/information/:token
     information(req, res) {
-        const  viewsData = undefined;
+        const { token } = req.params;
+        const data = readJWT(token);
         fetch(`http://localhost:${port}/api/accounts/profile`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-
-        console.log(viewsData);
-        res.render('info', {viewsData});
+            .then(response => {
+                if (response.code !== 0) {
+                    return res.json({
+                        code: 1,
+                        message: 'Lấy thông tin người dùng thất bại',
+                    });
+                } else {
+                    res.render('info', {
+                        data: response.data,
+                        token
+                    });
+                }
+            });
     }
 
     // [GET] /user/change-pass

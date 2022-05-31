@@ -24,7 +24,7 @@ router.get('/mobile-card', UserController.mobileCard);
 
 router.get('/trade', UserController.trade);
 
-router.get('/information', UserController.information);
+router.get('/information/:token', UserController.information);
 
 router.get('/change-pass', UserController.changePass);
 

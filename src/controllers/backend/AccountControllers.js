@@ -109,7 +109,7 @@ class AccountControllers {
             let message = result.errors[0].msg;
 
             return res.json({
-                code: 0,
+                code: 3,
                 message
             })
         };
@@ -282,7 +282,7 @@ class AccountControllers {
             });
         }
 
-        const response = {
+        const data = {
             fullName: userData.fullName,
             email: userData.email,
             phone: userData.phone,
@@ -297,7 +297,7 @@ class AccountControllers {
         return res.json({
             code: 0,
             message: 'Nhận thông tin người dùng thành công',
-            response
+            data
         });
     };
 

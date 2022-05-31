@@ -3,14 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="icon" href="/img/logo5.png" type="image/png" />
-    <title>Space Holic</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <%-include('./partials/head') %>
 </head>
 
 <body class="home_banner_area">
@@ -28,20 +21,18 @@
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thao tác</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="/user/deposit">Nạp tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/transfer">Chuyển tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/drawback">Rút tiền</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/mobile-card">Mua thẻ điện
-                                            thoại</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/trade">Lịch sử giao dịch</a>
-                                    </li>
+                                    <% if(data.role === 'admin') { %>
+                                        <%- include('./partials/action_nav_admin'); %>
+                                    <% } else { %>
+                                        <%- include('./partials/action_nav_user'); %>
+                                    <% } %>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/user/contact-user">Liên hệ</a></li>
                             <li class="nav-item submenu dropdown d-lg-none">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thông tin</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="/user/information">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/user/information/<%= token%>">Thông tin cá nhân</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/user/change-pass">Đối mật khẩu</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/user/add-id-card">Bổ sung CMND</a>
                                     </li>
@@ -59,7 +50,7 @@
                                     <%= data.fullName %>
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item text" href="/user/information">
+                                    <a class="dropdown-item text" href="/user/information/<%= token%>">
                                         <i class="bi bi-person mr-3"></i>
                                         <span class=""> Thông tin cá nhân</span>
                                     </a>
@@ -83,70 +74,11 @@
             </nav>
         </div>
     </header>
-    <div class="container h-100 d-flex justify-content-center align-items-center">
-        <div class="logined-color">
-            <form>
-                <div class="row ">
-                    <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 m-auto ">
-                        <div class="mb-5 mt-5 mr-5 ml-5 operator-logined">
-                            <div class="row form-group form-inline p-0">
-                                <div role="button" class="col-12 col-xl-3 col-md-6 col-lg-4 col-sm-12 text-center">
-                                    <div class="app-background app justify-content-center align-items-center mt-5">
-                                        <a href="/user/deposit">
-                                            <img src="/img/5.png" alt="" class="w-50 m-auto justify-content-center align-items-center">
-                                            <div>
-                                                <p class="align-items-center mt-3 text-menu"> Nạp tiền </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div role="button" class="col-12 col-xl-3 col-md-6 col-lg-4 col-sm-12 text-center">
-                                    <div class="app-background app mt-5">
-                                        <a href="/user/drawback">
-                                            <img src="/img/4.png" alt="" class="w-50 m-auto align-items-center">
-                                            <div>
-                                                <p class="align-items-center mt-3 text-menu"> Rút tiền về thẻ </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div role="button" class="col-12 col-xl-3 col-md-6 col-lg-4 col-sm-12 text-center">
-                                    <div class="app-background app mt-5">
-                                        <a href="/user/transfer">
-                                            <img src="/img/8.png" alt="" class="w-50 m-auto align-items-center">
-                                            <div>
-                                                <p class="align-items-center mt-3 text-menu"> Chuyển tiền </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div role="button" class="col-12 col-xl-3 col-md-6 col-lg-4 col-sm-12 text-center">
-                                    <div class="app-background app mt-5">
-                                        <a href="/user/mobile-card">
-                                            <img src="/img/6.png" alt="" class="w-50 m-auto align-items-center">
-                                            <div>
-                                                <p class="align-items-center mt-3 text-menu"> Mua thẻ điện thoại </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div role="button" class="col-12 col-xl-3 col-md-6 col-lg-4 col-sm-12 text-center">
-                                    <div class="app-background app mt-5">
-                                        <a href="/user/trade">
-                                            <img src="/img/9.png" alt="" class="w-50 m-auto align-items-center">
-                                            <div>
-                                                <p class="align-items-center mt-3 text-menu"> Lịch sử giao dịch </p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            </form>
-            </div>
-            </div>
-        </div>
-    </div>
+    <% if(data.role === 'admin') { %>
+        <%- include('./partials/action_admin'); %>
+    <% } else { %>
+        <%- include('./partials/action_user'); %>
+    <% } %>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
