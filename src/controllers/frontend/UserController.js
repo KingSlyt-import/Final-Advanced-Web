@@ -159,6 +159,11 @@ class UserController {
     OTP(req,res){
         res.render('OTP_Recovery');
     }
+
+    // [GET] /user/detail-trade
+    detailedTrade(req,res){
+        res.render('hoadoninfo');
+    }
 }
 
 module.exports = new UserController();

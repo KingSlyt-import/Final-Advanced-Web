@@ -33,4 +33,6 @@ router.get('/add-id-card', UserController.addIDCard);
 router.get('/mobile-info', UserController.mobileInfo);
 
 router.get('/contact-user', UserController.contactLogined);
+
+router.get('/detail-trade', UserController.detailedTrade);
 module.exports = router;
