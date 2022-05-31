@@ -18,7 +18,7 @@ router.get('/deposit/:token', UserController.deposit);
 
 router.get('/transfer/:token', UserController.transfer);
 
-router.get('/drawbac/:token', UserController.drawback);
+router.get('/drawback/:token', UserController.drawback);
 
 router.get('/mobile-card/:token', UserController.mobileCard);
 

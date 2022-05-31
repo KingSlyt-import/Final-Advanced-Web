@@ -18,16 +18,6 @@
                     <ul class="nav navbar-nav menu_nav">
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <li class="nav-item"><a class="nav-link" href="/index/<%= token%>">Trang chủ</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thao tác</a>
-                                <ul class="dropdown-menu">
-                                    <% if(data.role === 'admin') { %>
-                                        <%- include('./partials/action_nav_admin'); %>
-                                    <% } else { %>
-                                        <%- include('./partials/action_nav_user'); %>
-                                    <% } %>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link" href="/user/contact-user">Liên hệ</a></li>
                             <li class="nav-item submenu dropdown d-lg-none">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thông tin</a>
@@ -74,7 +64,7 @@
             </nav>
         </div>
     </header>
-    <% if(data.role === 'admin') { %>
+     <% if(data.role === 'admin') { %>
         <%- include('./partials/action_admin'); %>
     <% } else { %>
         <%- include('./partials/action_user'); %>
