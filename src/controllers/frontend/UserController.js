@@ -10,7 +10,8 @@ const port = process.env.PORT || 3000;
 class UserController {
     // [GET] /user/login
     login(req, res) {
-        res.render('login');
+        let message = req.flash('message')[0]
+        res.render('login',{message});
     };
 
     // [POST] /user/login-process
@@ -29,14 +30,61 @@ class UserController {
             .then(response => response.json())
             .then(response => {
                 if (response.code !== 0) {
-                    return res.json({
-                        code: 1,
-                        message: response.message,
-                    });
+                    // return res.json({
+                    //     code: 1,
+                    //     message: response.message,
+                    // });
+                    req.flash('message', response.message);
+                    res.redirect('/user/login');
                 } else {
+                    req.flash('message','Đăng nhập thành công');
                     res.redirect(`/index/${response.token}`);
                 }
             })
+    }
+
+    // [GET] /users/firstChangePassword/:token
+    firstChangePassword(req, res) {
+        const token = req.params.token;
+        const data = readJWT(token);
+        if (data.code !== 0) {
+            return res.redirect('/');
+        }
+        return res.render('firstChangePassword', {
+            username: data.username,
+            token
+        })
+    }
+    
+    // [POST] /users/firstChangePassword/:token
+    firstChangePasswordProcess(req, res) {
+        const token = req.params.token;
+        const data = readJWT(token);
+        if (data.code !== 0) {
+            return res.redirect('/');
+        }
+        fetch(`${HOST}/api/users/firstChangePassword/${data.username}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                newPassword: req.body.newPassword,
+                confirmPassword: req.body.confirmPassword
+            })
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response.code === 0) {
+                    return res.redirect('/users/application/' + response.token);
+                }
+                return res.redirect('/Error');
+            })
+            .catch(err => {
+                return res.redirect('/Error');
+            });
     }
 
     // [GET] /user/register
@@ -280,10 +328,52 @@ class UserController {
             })
     }
 
-    // [GET] /user/add-id-card
-    addIDCard(req, res) {
-        res.render('bosungCMND2');
-    }
+    // // [GET] /user/add-id-card
+    // addIDCard(req, res) {
+    //     const { token } = req.params;
+    //     const data = readJWT(token);
+    //     fetch(`http://localhost:${port}/api/accounts/profile`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         })
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             res.render('bosungCMND2', {
+    //                 data,
+    //                 token
+    //             });
+    //         });
+    // }
+
+    // // [POST] /user/add-id-card
+    // changePassProcess(req,res){
+    //     fetch(`http://localhost:${port}/api/accounts/change-password`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 oldPassword: req.body.oldPassword,
+    //                 newPassword: req.body.newPassword,
+    //             })
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             if (data.code !== 0) {
+    //                 return res.json({
+    //                     code: 3,
+    //                     message: 'Mật khẩu cũ không đúng',
+    //                 });
+    //             } else {
+    //                 res.redirect(`/index/${token}`);
+    //             }
+    //         })
+    // }
 
     // [GET] /user/add-id-card
     mobileInfo(req, res) {
@@ -292,7 +382,23 @@ class UserController {
 
     // [GET] /user/add-id-card
     contactLogined(req, res) {
-        res.render('contact_logined')
+        const { token } = req.params;
+        const data = readJWT(token);
+        fetch(`http://localhost:${port}/api/accounts/profile`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(response => {
+                res.render('contact_logined', {
+                    data,
+                    token
+                });
+            });
     }
 
     // [GET] /user/add-id-card

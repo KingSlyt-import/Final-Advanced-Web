@@ -12,11 +12,19 @@ class HomeController {
         const { token } = req.params;
         // console.log(token);
         const data = readJWT(token);
-        // console.log(data);
-        res.render('logined', {
-            data,
-            token
-        });
+        console.log(data);
+        if (data.firstLog === true) {
+            res.render('nhapmkmoi', {
+                data,
+                token
+            })
+        } else {
+            res.render('logined', {
+                data,
+                token
+            });
+        }
+       
     }
 
     contact(req, res) {

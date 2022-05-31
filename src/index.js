@@ -1,5 +1,7 @@
 // core modules
 const path = require('path');
+const flash = require("express-flash");
+const session = require("express-session");
 
 // npm modules
 require('dotenv').config()
@@ -22,7 +24,15 @@ app.set('view engine', 'ejs');
 app.set('views', viewsDirectoryPath);
 
 app.use(express.static(publicDirectoryPath));
-
+app.use(
+    session({
+      secret: "TDT",
+      resave: true,
+      saveUninitialized: true,
+      cookie: { maxAge: 60000 * 30 },
+    })
+  );
+app.use(flash());
 // express config routers
 const HomeInterface = require('./routers/frontend/HomeRouter');
 const UserInterface = require('./routers/frontend/UserRouter');
@@ -46,7 +56,7 @@ app.get('/recover', (req, res) => {
         link: 'http://localhost:1234567890'
     }
 
-    res.render('bosungCMND2', { viewsData });
+    res.render('./email/emailer-recover', { viewsData });
 })
 
 const port = process.env.PORT || 3000;

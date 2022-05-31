@@ -32,9 +32,9 @@ router.get('/trade/:token', UserController.trade);
 router.get('/information/:token', UserController.information);
 
 router.get('/change-pass/:token', UserController.changePass);
-router.post('/change-pass-processing/:token', UserController.changePassProcess)
+router.post('/change-pass-processing/:token', UserController.changePassProcess);
 
-router.get('/add-id-card/:token', UserController.addIDCard);
+// router.get('/add-id-card/:token', UserController.addIDCard);
 
 router.get('/mobile-info/:token', UserController.mobileInfo);
 
@@ -42,4 +42,5 @@ router.get('/contact-user/:token', UserController.contactLogined);
 
 router.get('/detail-trade/:token', UserController.detailedTrade);
 
+router.get('/user/contact-user/:token',UserController.contactLogined);
 module.exports = router;

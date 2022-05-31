@@ -445,7 +445,7 @@ class AccountControllers {
                     });
                 };
 
-                await AccountModel.findOneAndUpdate({ email }, { password: hashedPassword, firstLog: false });
+                AccountModel.findOneAndUpdate({ email }, { password: hashedPassword, firstLog: false });
             })
             .catch(error => {
                 return res.json({

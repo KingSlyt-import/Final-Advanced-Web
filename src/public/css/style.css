@@ -993,3 +993,8 @@ div {
       padding: 0 15px;
   }
 }
+
+/* flash */
+.textflash-login{
+  font-size: 25px;
+}
