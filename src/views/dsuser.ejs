@@ -70,7 +70,7 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12 m-auto">
                 <div class="trading-color">
-                    <h1 class="text-center">Danh sách tài khoản</h2>
+                    <h1 class="text-center"><%= title %></h1>
                         <p>Thông tin tổng quan</p>
                         <table class="table text-center ">
                             <thead>
@@ -78,11 +78,14 @@
                                     <th>Email</th>
                                     <th>Họ tên</th>
                                     <th>Vai trò</th>
-                                    <th>Trạng thái</th>
                                 </tr>
                             </thead>
                             <tbody class="trading-body">
-                                <%-include('./partials/userList') %>
+                                <% data.forEach(function(item){ %>
+                                    <% if(item.role == 'user') { %>
+                                    <%- include('./partials/userList',{email: item.email, fullname: item.fullName, role: item.role}) %>
+                                    <% } %>
+                                <% }); %>
                             </tbody>
                         </table>
                         <div class="col-md-12 form-inline p-0">
