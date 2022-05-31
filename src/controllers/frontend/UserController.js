@@ -155,6 +155,34 @@ class UserController {
     changePass(req, res) {
         res.render('doimk');
     }
+    
+    // [POST] /user/change-pass
+    changPass(req,res){
+        const { token } = req.params;
+        const data = readJWT(token);
+        fetch(`http://localhost:${port}/api/accounts/change-password`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.code !== 0) {
+                    return res.json({
+                        code: 3,
+                        message: response.message
+                    });
+                } else {
+                    res.render('info', {
+                        data: response.data,
+                        token
+                    });
+                }
+            });
+    }
 
     // [GET] /user/add-id-card
     addIDCard(req, res) {
