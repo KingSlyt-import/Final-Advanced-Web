@@ -46,7 +46,7 @@ class UserController {
         res.render('register');
     }
 
-    // [POST] register-process(example)
+    // [POST] register-process
     registerProcess(req, res) {
         fetch(`http://localhost:${port}/api/accounts/register`, {
                 method: 'POST',
@@ -157,31 +157,29 @@ class UserController {
     }
     
     // [POST] /user/change-pass
-    changPass(req,res){
-        const { token } = req.params;
-        const data = readJWT(token);
+    changePassProcess(req,res){
         fetch(`http://localhost:${port}/api/accounts/change-password`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    oldPassword: req.body.oldPassword,
+                    newPassword: req.body.newPassword,
+                })
             })
             .then(response => response.json())
-            .then(response => {
-                if (response.code !== 0) {
+            .then(data => {
+                if (data.code !== 0) {
                     return res.json({
                         code: 3,
-                        message: response.message
+                        message: 'Mật khẩu cũ không đúng',
                     });
                 } else {
-                    res.render('info', {
-                        data: response.data,
-                        token
-                    });
+                    res.redirect(`/index/${token}`);
                 }
-            });
+            })
     }
 
     // [GET] /user/add-id-card

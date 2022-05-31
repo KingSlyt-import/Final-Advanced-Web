@@ -27,7 +27,7 @@ router.get('/trade/:token', UserController.trade);
 router.get('/information/:token', UserController.information);
 
 router.get('/change-pass/:token', UserController.changePass);
-router.post('/change-pass/:token', UserController.changePass)
+router.post('/change-pass-processing', UserController.changePassProcess)
 
 router.get('/add-id-card/:token', UserController.addIDCard);
 
