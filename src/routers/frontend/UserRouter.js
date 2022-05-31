@@ -13,6 +13,10 @@ router.get('/login', UserController.login);
 router.post('/login-process', UserController.loginProcess);
 
 router.get('/recovery-pass', UserController.recoveryPass);
+router.post('/recovery-pass-process', UserController.recoveryPassProcess);
+
+router.get('/recover-password/:token', UserController.recoverPassword);
+router.post('/recover-password/:token', UserController.recoverPasswordProcess);
 
 router.get('/deposit/:token', UserController.deposit);
 
@@ -27,7 +31,7 @@ router.get('/trade/:token', UserController.trade);
 router.get('/information/:token', UserController.information);
 
 router.get('/change-pass/:token', UserController.changePass);
-router.post('/change-pass-processing', UserController.changePassProcess)
+router.post('/change-pass-processing/:token', UserController.changePassProcess)
 
 router.get('/add-id-card/:token', UserController.addIDCard);
 

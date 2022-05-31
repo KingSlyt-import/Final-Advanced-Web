@@ -11,6 +11,7 @@ const router = express.Router();
 router.get('/', AdminControllers.getAdminControllers);
 
 router.get('/get-all-account', isLoggedIn, isAdmin, AdminControllers.getAllAccount);
+router.get('/get-user-info/:email', isLoggedIn, isAdmin, AdminControllers.getUserByEmail);
 
 router.get('/get-waiting-list', isLoggedIn, isAdmin, AdminControllers.getWaitingList);
 router.get('/get-verified-list', isLoggedIn, isAdmin, AdminControllers.getVerifiedList);

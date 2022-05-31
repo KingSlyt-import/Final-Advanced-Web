@@ -307,7 +307,7 @@ class AccountControllers {
             let message = result.errors[0].msg;
 
             return res.json({
-                code: 0,
+                code: 2,
                 message
             })
         }
@@ -347,7 +347,7 @@ class AccountControllers {
             let message = result.errors[0].msg;
 
             return res.json({
-                code: 0,
+                code: 3,
                 message
             })
         };
@@ -377,11 +377,14 @@ class AccountControllers {
 
                 emailer.sendRecoverPasswordEmail(emailData);
 
-                const otp = {
-                    otp: otpCode,
-                    lastTime: Date.now()
+                const dataUpdate = {
+                    otp: {
+                        code: otpCode,
+                        lastTime: new Date()
+                    }
                 }
-                await AccountModel.findOneAndUpdate({ email }, { otp });
+
+                await AccountModel.findOneAndUpdate({ email }, dataUpdate);
             });
         }
 
@@ -392,14 +395,43 @@ class AccountControllers {
     };
 
     async recoverPassword(req, res) {
-        const { otp } = req.body;
+        const result = validationResult(req);
+        if (result.errors.length !== 0) {
+            let message = result.errors[0].msg;
+
+            return res.json({
+                code: 3,
+                message
+            })
+        };
+
+        const { otp, password } = req.body;
         const { token } = req.params;
 
         const data = readJWT(token);
         const user = await AccountModel.findOne({ email: data.email });
+        const timeLeft = Date.now() - user.otp.lastTime;
 
         if ((user.otp.code).toString() === otp) {
-            await AccountModel.findOneAndUpdate({})
+            if (timeLeft < 60000) {
+                const hashedPassword = bcrypt.hashSync(password, 10);
+                await AccountModel.findOneAndUpdate({ email: data.email }, { password: hashedPassword });
+
+                return res.json({
+                    code: 0,
+                    message: 'Đổi mật khẩu thành công'
+                })
+            } else {
+                return res.json({
+                    code: 3,
+                    message: 'OTP quá hạn'
+                })
+            }
+        } else {
+            return res.json({
+                code: 3,
+                message: 'OTP quá hạn hoặc OTP không chính xác'
+            })
         }
     }
 };

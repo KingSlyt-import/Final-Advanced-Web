@@ -46,7 +46,7 @@ app.get('/recover', (req, res) => {
         link: 'http://localhost:1234567890'
     }
 
-    res.render('./email/emailer-recover', { viewsData });
+    res.render('bosungCMND2', { viewsData });
 })
 
 const port = process.env.PORT || 3000;

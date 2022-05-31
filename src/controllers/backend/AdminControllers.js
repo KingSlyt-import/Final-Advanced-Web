@@ -89,6 +89,25 @@ class AdminControllers {
         });
     };
 
+    // [GET] /api/admin/get-user-by-email
+    async getUserByEmail(req, res) {
+        const { email } = req.params;
+        const data = await AccountModel.findOne({ email });
+
+        if (!data) {
+            return res.json({
+                code: 3,
+                message: 'Không tìm thấy người dùng'
+            })
+        };
+
+        return res.json({
+            code: 0,
+            message: 'Nhận dữ liệu thành công',
+            data
+        });
+    }
+
     // [PUT] /api/admin/unlock-account
     async unlockAccount(req, res) {
         const { email } = req.user;

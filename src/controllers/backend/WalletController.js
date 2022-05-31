@@ -17,7 +17,7 @@ class WalletController {
             })
         }
 
-        const { cardId, expiredDate, cvv } = req.body;
+        const { cardId, expiredDate, cvv, amount } = req.body;
         const card = await CardModel.findOne({ cardId });
 
         if (!card) {
