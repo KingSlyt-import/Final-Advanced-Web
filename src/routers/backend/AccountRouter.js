@@ -6,6 +6,7 @@ const registerValidator = require('../../utils/validators/registerValidator');
 const loginValidator = require('../../utils/validators/loginValidator');
 const changePasswordValidator = require('../../utils/validators/changePasswordValidator');
 const recoverRequestValidator = require('../../utils/validators/recoverRequestValidator');
+const firstLogValidator = require('../../utils/validators/firstLogValidator');
 const otpFormValidator = require('../../utils/validators/otpFormValidator');
 
 // npm module
@@ -20,6 +21,7 @@ router.get('/get-user-by-email', AccountControllers.getUserByEmail);
 router.post('/register', registerValidator, AccountControllers.register);
 router.post('/login', loginValidator, AccountControllers.login);
 router.post('/recover-password/:token', otpFormValidator, AccountControllers.recoverPassword);
+router.post('/firs-log-process', isLoggedIn, firstLogValidator, AccountControllers.firstLog);
 
 router.get('/profile', isLoggedIn, AccountControllers.getProfile);
 router.post('/change-password', isLoggedIn, changePasswordValidator, AccountControllers.changePassword);

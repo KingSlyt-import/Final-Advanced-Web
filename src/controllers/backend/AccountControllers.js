@@ -433,8 +433,8 @@ class AccountControllers {
 
     async firstLog(req, res) {
         const { email } = req.user;
-        const { password } = req.body;
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        const { newPassword } = req.body;
+        const hashedPassword = bcrypt.hashSync(newPassword, 10);
 
         AccountModel.findOne({ email })
             .then(account => {
@@ -445,7 +445,24 @@ class AccountControllers {
                     });
                 };
 
-                AccountModel.findOneAndUpdate({ email }, { password: hashedPassword, firstLog: false });
+                const dataUpdate = {
+                    password: hashedPassword,
+                    firstLog: false
+                }
+
+                AccountModel.findOneAndUpdate({ email }, dataUpdate)
+                    .then(() => {
+                        return res.json({
+                            code: 0,
+                            message: 'Thay đổi mật khẩu lần đầu đăng nhập thành công'
+                        });
+                    })
+                    .catch(error => {
+                        return res.json({
+                            code: 3,
+                            message: error.message
+                        });
+                    })
             })
             .catch(error => {
                 return res.json({

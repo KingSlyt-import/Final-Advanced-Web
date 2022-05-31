@@ -23,6 +23,8 @@ router.post('/deposit-process/:token', UserController.depositProcess);
 
 router.get('/transfer/:token', UserController.transfer);
 
+router.post('/first-log-process/:token', UserController.firstLogProcess)
+
 router.get('/drawback/:token', UserController.drawback);
 
 router.get('/mobile-card/:token', UserController.mobileCard);
@@ -42,5 +44,5 @@ router.get('/contact-user/:token', UserController.contactLogined);
 
 router.get('/detail-trade/:token', UserController.detailedTrade);
 
-router.get('/user/contact-user/:token',UserController.contactLogined);
+router.get('/user/contact-user/:token', UserController.contactLogined);
 module.exports = router;

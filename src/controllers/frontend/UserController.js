@@ -11,7 +11,7 @@ class UserController {
     // [GET] /user/login
     login(req, res) {
         let message = req.flash('message')[0]
-        res.render('login',{message});
+        res.render('login', { message });
     };
 
     // [POST] /user/login-process
@@ -37,54 +37,40 @@ class UserController {
                     req.flash('message', response.message);
                     res.redirect('/user/login');
                 } else {
-                    req.flash('message','Đăng nhập thành công');
+                    req.flash('message', 'Đăng nhập thành công');
                     res.redirect(`/index/${response.token}`);
                 }
             })
     }
 
-    // [GET] /users/firstChangePassword/:token
-    firstChangePassword(req, res) {
-        const token = req.params.token;
-        const data = readJWT(token);
-        if (data.code !== 0) {
-            return res.redirect('/');
-        }
-        return res.render('firstChangePassword', {
-            username: data.username,
-            token
-        })
-    }
-    
     // [POST] /users/firstChangePassword/:token
-    firstChangePasswordProcess(req, res) {
+    firstLogProcess(req, res) {
         const token = req.params.token;
         const data = readJWT(token);
-        if (data.code !== 0) {
-            return res.redirect('/');
-        }
-        fetch(`${HOST}/api/users/firstChangePassword/${data.username}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                newPassword: req.body.newPassword,
-                confirmPassword: req.body.confirmPassword
+        fetch(`http://localhost:${port}/api/accounts/firs-log-process`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    newPassword: req.body.newPassword,
+                    confirmPassword: req.body.confirmPassword
+                })
             })
-        })
             .then(response => response.json())
             .then(response => {
-                if (response.code === 0) {
-                    return res.redirect('/users/application/' + response.token);
+                console.log(response);
+                if (response.code !== 0) {
+                    return res.json({
+                        code: 1,
+                        message: response.message,
+                    });
+                } else {
+                    res.redirect(`/index/${token}`);
                 }
-                return res.redirect('/Error');
             })
-            .catch(err => {
-                return res.redirect('/Error');
-            });
     }
 
     // [GET] /user/register
@@ -226,7 +212,7 @@ class UserController {
                         message: response.message
                     });
                 } else {
-                    res.redirect('/user/deposit');
+                    res.redirect(`/user/deposit/${token}`);
                 }
             })
     }

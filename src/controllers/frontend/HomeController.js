@@ -12,7 +12,7 @@ class HomeController {
         const { token } = req.params;
         // console.log(token);
         const data = readJWT(token);
-        console.log(data);
+        // console.log(data);
         if (data.firstLog === true) {
             res.render('nhapmkmoi', {
                 data,
@@ -24,7 +24,7 @@ class HomeController {
                 token
             });
         }
-       
+
     }
 
     contact(req, res) {
