@@ -53,6 +53,7 @@ class AdminController {
                         message: 'Lấy thông tin người dùng thất bại',
                     });
                 } else {
+                    console.log(response);
                     res.render('dsuser', {
                         data: response.data,
                         title,

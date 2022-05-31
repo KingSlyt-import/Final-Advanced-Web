@@ -8,7 +8,7 @@ const router = express.Router();
 // routing
 router.get('/receipt-info', AdminController.receiptinfo);
 
-router.get('/user-list/:token', AdminController.userlist);
+router.get('/user-list/:token/:status', AdminController.userlist);
 
 router.get('/user-info/:token/:email', AdminController.infoAdmin);
 
