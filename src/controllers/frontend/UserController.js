@@ -46,8 +46,7 @@ class UserController {
     // [POST] /users/firstChangePassword/:token
     firstLogProcess(req, res) {
         const token = req.params.token;
-        const data = readJWT(token);
-        fetch(`http://localhost:${port}/api/accounts/firs-log-process`, {
+        fetch(`http://localhost:${port}/api/accounts/first-log-process`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -61,7 +60,6 @@ class UserController {
             })
             .then(response => response.json())
             .then(response => {
-                console.log(response);
                 if (response.code !== 0) {
                     return res.json({
                         code: 1,

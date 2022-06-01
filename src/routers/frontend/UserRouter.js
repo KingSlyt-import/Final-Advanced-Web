@@ -25,7 +25,7 @@ router.get('/transfer/:token', UserController.transfer);
 
 router.post('/first-log-process/:token', UserController.firstLogProcess)
 
-router.get('/drawback/:token', UserController.drawback);
+router.get('/drawback', UserController.drawback);
 
 router.get('/mobile-card/:token', UserController.mobileCard);
 

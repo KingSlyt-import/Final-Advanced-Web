@@ -21,7 +21,7 @@ router.get('/get-user-by-email', AccountControllers.getUserByEmail);
 router.post('/register', registerValidator, AccountControllers.register);
 router.post('/login', loginValidator, AccountControllers.login);
 router.post('/recover-password/:token', otpFormValidator, AccountControllers.recoverPassword);
-router.post('/firs-log-process', isLoggedIn, firstLogValidator, AccountControllers.firstLog);
+router.post('/first-log-process', isLoggedIn, firstLogValidator, AccountControllers.firstLog);
 
 router.get('/profile', isLoggedIn, AccountControllers.getProfile);
 router.post('/change-password', isLoggedIn, changePasswordValidator, AccountControllers.changePassword);

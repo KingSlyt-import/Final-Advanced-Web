@@ -9,7 +9,6 @@
     <div class="main_menu">
         <nav class="bg-white navbar navbar-expand-lg navbar-light ">
             <div class="container">
-
                 <a class="navbar-brand logo_h " href="/index"><img src="/img/logo3.png" class="mt-4"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
@@ -18,14 +17,14 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav">
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                            <li class="nav-item"><a class="nav-link" href="/index/<%=token%>">Trang chủ</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/user/contact-user/<%=token%>">Liên hệ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index/">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/user/contact-user/">Liên hệ</a></li>
                             <li class="nav-item submenu dropdown d-lg-none">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thông tin</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="/user/information/<%=token%>">Thông tin cá nhân</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/change-pass/<%=token%>">Đối mật khẩu</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/user/add-id-card/<%=token%>">Bổ sung CMND</a>
+                                    <li class="nav-item"><a class="nav-link" href="/user/information/">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/user/change-pass/">Đối mật khẩu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/user/add-id-card/">Bổ sung CMND</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="/">Đăng xuất</a></li>
                                 </ul>
@@ -37,18 +36,18 @@
                     <ul>
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <li class="nav-item dropdown ml-auto">
-                                <a class="nav-link dropdown-toggle text" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= data.fullName %>
+                                <a class="nav-link dropdown-toggle text" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item text" href="/user/information/<%=token%>">
+                                    <a class="dropdown-item text" href="/user/information/">
                                         <i class="bi bi-person mr-3"></i>
                                         <span class=""> Thông tin cá nhân</span>
                                     </a>
-                                    <a class="dropdown-item text" href="/user/change-pass/<%=token%>">
+                                    <a class="dropdown-item text" href="/user/change-pass/">
                                         <i class="bi bi-gear mr-3"></i>
                                         <span class=""> Đổi mật khẩu</span>
                                     </a>
-                                    <a class="dropdown-item text" href="/user/add-id-card/<%=token%>">
+                                    <a class="dropdown-item text" href="/user/add-id-card/">
                                         <i class="bi bi-person-square mr-3"></i>
                                         <span class=""> Bổ sung CMND</span>
                                     </a>
@@ -94,7 +93,7 @@
                         </div>
                         <div class="col-md-12  form-inline p-0 req-drawback">
                             <div class="col-sm-9 col-form-label col-8 ">
-                                <a href="/index/<%=token%>" class="btn btn-warning text-center recoveryBack">Quay lại</a>
+                                <a href="/index/" class="btn btn-warning text-center recoveryBack">Quay lại</a>
                             </div>
                             <div class="send-button col-sm-3 col-4">
                                 <button type="submit" class="btn btn-danger text-center">Rút Tiền</button>
@@ -103,9 +102,7 @@
                     </form>
                 </div>
                 <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
-                    <p class="footer-text m-0 col-lg-8 col-md-12">Copyright &copy;
-                        2022 All rights reserved <i
-                            aria-hidden="true"></i> by Space Holic
+                    <p class="footer-text m-0 col-lg-8 col-md-12">Copyright &copy; 2022 All rights reserved <i aria-hidden="true"></i> by Space Holic
                     </p>
                 </div>
             </div>
